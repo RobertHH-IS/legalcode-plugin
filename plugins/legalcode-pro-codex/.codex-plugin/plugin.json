@@ -1,0 +1,27 @@
+{
+  "name": "legalcode-pro-codex",
+  "version": "0.1.0",
+  "description": "Legalcode Pro for Codex with Pro MCP access, 10 legal skills, and CLI install helper.",
+  "author": {
+    "name": "Legalcode",
+    "url": "https://legalcode.md"
+  },
+  "homepage": "https://legalcode.md",
+  "keywords": ["legal", "mcp", "codex", "contracts", "compliance", "pro"],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "Legalcode Pro",
+    "shortDescription": "Pro legal research, drafting skills, and CLI for Codex",
+    "longDescription": "Bundle the hosted Legalcode Pro MCP endpoint with 10 Legalcode skills and CLI install helper for stronger search, guidance, agreements, downloads, and authenticated workflows.",
+    "developerName": "Legalcode",
+    "category": "Productivity",
+    "capabilities": ["Read"],
+    "websiteURL": "https://legalcode.md",
+    "defaultPrompt": [
+      "Use Legalcode to review this contract and identify the main legal risks.",
+      "Use Legalcode to analyze the governing statute and explain the compliance implications."
+    ],
+    "brandColor": "#0F766E"
+  }
+}

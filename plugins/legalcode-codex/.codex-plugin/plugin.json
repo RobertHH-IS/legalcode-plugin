@@ -1,0 +1,27 @@
+{
+  "name": "legalcode-codex",
+  "version": "0.1.0",
+  "description": "Legalcode for Codex with public Legalcode MCP access and 10 free legal skills.",
+  "author": {
+    "name": "Legalcode",
+    "url": "https://legalcode.md"
+  },
+  "homepage": "https://legalcode.md",
+  "keywords": ["legal", "mcp", "codex", "contracts", "compliance"],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "Legalcode",
+    "shortDescription": "Free legal research and drafting skills for Codex",
+    "longDescription": "Bundle the hosted public Legalcode MCP endpoint with 10 free Legalcode skills for legal research, contract review, privacy, litigation, and document workflows.",
+    "developerName": "Legalcode",
+    "category": "Productivity",
+    "capabilities": ["Read"],
+    "websiteURL": "https://legalcode.md",
+    "defaultPrompt": [
+      "Use Legalcode to review this contract and identify the main legal risks.",
+      "Use Legalcode to analyze the governing statute and explain the compliance implications."
+    ],
+    "brandColor": "#0F766E"
+  }
+}

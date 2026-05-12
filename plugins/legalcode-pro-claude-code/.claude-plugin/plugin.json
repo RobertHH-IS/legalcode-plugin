@@ -1,0 +1,12 @@
+{
+  "name": "legalcode-pro-claude-code",
+  "version": "0.1.0",
+  "description": "Legalcode Pro for Claude Code with Pro MCP access, 10 legal skills, and CLI install helper.",
+  "author": {
+    "name": "Legalcode"
+  },
+  "homepage": "https://legalcode.md",
+  "keywords": ["legal", "claude-code", "mcp", "contracts", "compliance", "pro"],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json"
+}
