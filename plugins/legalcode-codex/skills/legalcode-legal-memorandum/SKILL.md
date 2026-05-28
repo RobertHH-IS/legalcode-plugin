@@ -12,9 +12,6 @@ description: >
   verification. Distinguishes settled law from open questions requiring judicial
   interpretation. Supports multi-issue memos with separate Questions Presented.
 allowed-tools: Read, Bash(grep:*), Glob, WebSearch, WebFetch
-model: claude-opus-4-6
-context: fork
-agent: general-purpose
 ---
 
 # Legalcode Legal Memorandum

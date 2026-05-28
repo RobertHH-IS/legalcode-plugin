@@ -1,25 +1,20 @@
 ---
 name: legalcode-document-qa
 description: >
-  Run a comprehensive quality assurance audit on any legal document — contract, agreement,
-  deed, policy, or court filing — to detect drafting errors before execution or filing.
-  Covers nine QA dimensions: defined term audits (undefined, orphaned, duplicate, and
-  miscapitalized terms); cross-reference integrity (stale section numbers, broken
-  references); party name consistency (synonym drift, signature block mismatches); date
-  and deadline logic (effective date ambiguity, impossible dates, notice period arithmetic);
-  numbering and hierarchy (skipped items, inconsistent hierarchy, non-parallel structure);
-  gender and pronoun consistency (mixed gendered pronouns, orphaned antecedents); formatting
-  and layout (tracked changes, residual comments, font inconsistency, page numbering);
-  signature block validation (missing titles, undated lines, entity name mismatches);
-  and substance completeness gaps (missing essential provisions, undefined relative
-  standards). Generates a prioritized correction report with exact proposed corrections.
-  Use when proofreading a contract before execution, auditing a template for quality,
-  reviewing a redlined draft, or preparing a document for filing. Works on any document
-  type and any jurisdiction.
+  Run a comprehensive quality assurance audit on any legal document — contract,
+  agreement, deed, policy, or court filing — to detect drafting errors before
+  execution or filing. Covers nine QA dimensions: defined term audits (undefined,
+  orphaned, duplicate, and miscapitalized terms); cross-reference integrity (stale
+  section numbers, broken references); party name consistency (synonym drift,
+  signature block mismatches); date and deadline logic (effective date ambiguity,
+  impossible dates, notice period arithmetic); numbering and hierarchy (skipped
+  items, inconsistent hierarchy, non-parallel structure); gender and pronoun
+  consistency (mixed gendered pronouns, orphaned antecedents); formatting and
+  layout (tracked changes, residual comments, font inconsistency, page numbering);
+  signature block validation (missing titles, undated lines, entity name
+  mismatches); and substance completeness gaps (missing essential provisions,
+  undefined relative standards).
 allowed-tools: Read, Bash(grep:*), Glob
-model: claude-opus-4-6
-context: fork
-agent: general-purpose
 ---
 
 # Legalcode Document QA

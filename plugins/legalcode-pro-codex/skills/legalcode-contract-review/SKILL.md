@@ -9,9 +9,6 @@ description: >
   standard positions. Jurisdiction-agnostic with localization markers for any governing
   law. Supports playbook-based or general-standard review.
 allowed-tools: Read, Bash(grep:*), Glob
-model: claude-opus-4-5-20251101
-context: fork
-agent: general-purpose
 ---
 
 # Legalcode Contract Review

@@ -8,9 +8,6 @@ description: >
   Produces a defensible trigger decision, risk register, mitigation plan, prior-consultation
   recommendation, and executive-ready approval package.
 allowed-tools: Read, Bash(grep:*), Glob
-model: claude-opus-4-5-20251101
-context: fork
-agent: general-purpose
 ---
 
 # Legalcode DPIA Generator

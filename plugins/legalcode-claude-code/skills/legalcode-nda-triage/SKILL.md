@@ -9,9 +9,6 @@ description: >
   localization markers for any governing law. Supports playbook-based or general-standard
   screening. Produces a structured triage report with Glass Box audit trail.
 allowed-tools: Read, Bash(grep:*), Glob
-model: claude-opus-4-5-20251101
-context: fork
-agent: general-purpose
 ---
 
 # Legalcode NDA Triage

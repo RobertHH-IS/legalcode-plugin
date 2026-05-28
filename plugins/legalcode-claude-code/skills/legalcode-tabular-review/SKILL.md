@@ -11,9 +11,6 @@ description: >
   Claude Code CLI workers (`claude -p --model haiku`) for scale, or Task sub-agents when CLI
   is unavailable. Jurisdiction-agnostic with [JURISDICTION-SPECIFIC] markers.
 allowed-tools: Read, Bash(grep:*), Bash(ls:*), Bash(find:*), Bash(wc:*), Bash(claude:*), Bash(sh:*), Bash(bash:*), Bash(python3:*), Bash(pandoc:*), Bash(pdftotext:*), Bash(ocrmypdf:*), Bash(markitdown:*), Glob, Task
-model: claude-opus-4-5-20251101
-context: fork
-agent: general-purpose
 ---
 
 # Legalcode Tabular Review

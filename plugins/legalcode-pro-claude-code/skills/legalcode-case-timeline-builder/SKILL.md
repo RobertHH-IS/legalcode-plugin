@@ -14,9 +14,6 @@ description: >
   Handles 10K+ document corpora with automatic chunking, deduplication, privilege
   screening, protective order designations, and conflict resolution.
 allowed-tools: Read, Bash(grep:*), Bash(ls:*), Bash(find:*), Bash(wc:*), Bash(claude:*), Bash(sh:*), Bash(bash:*), Bash(python3:*), Bash(pandoc:*), Bash(magic-pdf:*), Bash(pdftotext:*), Bash(ocrmypdf:*), Bash(markitdown:*), Glob, WebSearch, WebFetch, Task
-model: claude-opus-4-5-20251101
-context: fork
-agent: general-purpose
 ---
 
 # Legalcode Case Timeline Builder
