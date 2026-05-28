@@ -1,7 +1,7 @@
 {
   "name": "legalcode-pro-claude-code",
-  "version": "0.1.0",
-  "description": "Legalcode Pro for Claude Code with Pro MCP access, 10 legal skills, and CLI install helper.",
+  "version": "0.2.0",
+  "description": "Legalcode Pro for Claude Code with Pro MCP access, 12 legal skills (incl. Icelandic gold-plating analysis), and CLI install helper.",
   "author": {
     "name": "Legalcode"
   },
