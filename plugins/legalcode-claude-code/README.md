@@ -5,7 +5,7 @@ Free Legalcode plugin bundle for Claude Code.
 Includes:
 
 - public Legalcode MCP endpoint: `https://mcp.legalcode.md/mcp`
-- 10 free Legalcode skills for setup, public search, contract review, privacy, legal research, litigation chronology, and tabular review
+- 11 free Legalcode skills for setup, public search, contract review, privacy, legal research, litigation chronology, tabular review, and private Business Legal Radar monitoring
 
 Install from the marketplace after this repo is public:
 

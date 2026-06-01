@@ -11,7 +11,7 @@
     {
       "name": "legalcode-claude-code",
       "source": "./plugins/legalcode-claude-code",
-      "description": "Free Legalcode skills and public Legalcode MCP access for Claude Code",
+      "description": "Free Legalcode skills, private legal radar monitoring, and public Legalcode MCP access for Claude Code",
       "version": "0.1.0",
       "author": {
         "name": "Legalcode"
@@ -23,7 +23,7 @@
     {
       "name": "legalcode-pro-claude-code",
       "source": "./plugins/legalcode-pro-claude-code",
-      "description": "Legalcode Pro MCP access, 12 legal skills (incl. Icelandic gold-plating analysis), and CLI install helper for Claude Code",
+      "description": "Legalcode Pro MCP access, 13 legal skills (incl. private legal radar and Icelandic gold-plating analysis), and CLI install helper for Claude Code",
       "version": "0.2.0",
       "author": {
         "name": "Legalcode"

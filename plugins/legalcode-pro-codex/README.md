@@ -5,7 +5,7 @@ Pro Legalcode plugin bundle for Codex.
 Includes:
 
 - Pro Legalcode MCP endpoint: `https://mcppro.legalcode.md/mcp`
-- 12 Legalcode skills for setup, public/pro search, contract review, privacy, legal research, litigation chronology, tabular review, **Icelandic gold-plating (gullhúðun) analysis**, and **DOCX rendering**
+- 13 Legalcode skills for setup, public/pro search, contract review, privacy, legal research, litigation chronology, tabular review, **private Business Legal Radar monitoring**, **Icelandic gold-plating (gullhúðun) analysis**, and **DOCX rendering**
 - CLI install helper at `scripts/install-legalcode-cli.sh`
 
 ## Skills
@@ -20,8 +20,9 @@ Includes:
 8. `legalcode-statute-analysis`
 9. `legalcode-case-timeline-builder`
 10. `legalcode-tabular-review`
-11. `legalcode-anti-gold-plating-is` — Icelandic gold-plating analysis for EEA-implementation acts; produces a *Gullhúðunarskýrsla* and optional remediation *breytingafrumvarp* as Word documents
-12. `legalcode-docx-render` — Companion DOCX renderer with Icelandic legal typography and table-border post-processing
+11. `business-legal-radar-private-agent-watch` — Privacy-first local legal radar monitoring with client-owned watch state and Codex/Claude Code automation
+12. `legalcode-anti-gold-plating-is` — Icelandic gold-plating analysis for EEA-implementation acts; produces a *Gullhúðunarskýrsla* and optional remediation *breytingafrumvarp* as Word documents
+13. `legalcode-docx-render` — Companion DOCX renderer with Icelandic legal typography and table-border post-processing
 
 The CLI helper runs:
 
