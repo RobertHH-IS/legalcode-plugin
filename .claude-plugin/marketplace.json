@@ -5,20 +5,20 @@
   },
   "metadata": {
     "description": "Legalcode plugins for Claude Code, including hosted Legalcode MCP access and curated legal skills.",
-    "version": "0.2.0"
+    "version": "0.3.0"
   },
   "plugins": [
     {
       "name": "legalcode-claude-code",
       "source": "./plugins/legalcode-claude-code",
-      "description": "Free Legalcode skills, private legal radar monitoring, and public Legalcode MCP access for Claude Code",
-      "version": "0.1.0",
+      "description": "Free tier: 13 legal skills (incl. private legal radar and Icelandic gold-plating analysis) with public Legalcode MCP access for Claude Code",
+      "version": "0.2.0",
       "author": {
         "name": "Legalcode"
       },
       "homepage": "https://legalcode.md",
       "category": "Legal",
-      "tags": ["legal", "contracts", "compliance", "mcp", "research"]
+      "tags": ["legal", "contracts", "compliance", "mcp", "research", "iceland", "gold-plating"]
     },
     {
       "name": "legalcode-pro-claude-code",
