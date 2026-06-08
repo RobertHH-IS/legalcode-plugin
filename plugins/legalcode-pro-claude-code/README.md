@@ -21,7 +21,7 @@ Includes:
 9. `legalcode-case-timeline-builder`
 10. `legalcode-tabular-review`
 11. `business-legal-radar-private-agent-watch` — Privacy-first local legal radar monitoring with client-owned watch state and Codex/Claude Code automation
-12. `legalcode-anti-gold-plating-is` — Icelandic gold-plating analysis for EEA-implementation acts; produces a *Gullhúðunarskýrsla* and optional remediation *breytingafrumvarp* as Word documents
+12. `legalcode-anti-gold-plating-is` — Icelandic gold-plating analysis for EEA-implementation acts; produces a _Gullhúðunarskýrsla_ and optional remediation _breytingafrumvarp_ as Word documents
 13. `legalcode-docx-render` — Companion DOCX renderer with Icelandic legal typography and table-border post-processing
 
 Install from the marketplace after this repo is public:

@@ -30,7 +30,16 @@
       },
       "homepage": "https://legalcode.md",
       "category": "Legal",
-      "tags": ["legal", "contracts", "compliance", "mcp", "research", "pro", "iceland", "gold-plating"]
+      "tags": [
+        "legal",
+        "contracts",
+        "compliance",
+        "mcp",
+        "research",
+        "pro",
+        "iceland",
+        "gold-plating"
+      ]
     }
   ]
 }

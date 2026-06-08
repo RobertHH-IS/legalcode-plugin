@@ -1,4 +1,5 @@
 # Frumvarp til laga
+
 um breytingu á lögum um {heiti laganna}, nr. {NN/YYYY} ({stutt-heiti, t.d. "samræming við {tilskipun | reglugerð | ákvörðun} (ESB) {YYYY/NN} — afnám gullhúðunar"}).
 
 Frá {ráðherra/flutningsmaður(menn)}.
@@ -6,23 +7,28 @@ Frá {ráðherra/flutningsmaður(menn)}.
 ---
 
 ## I. KAFLI
+
 Breyting á lögum um {heiti laganna}, nr. {NN/YYYY}.
 
 ### 1. gr.
+
 {Standard amendment formulation — see references/frumvarp-structure.md §3.2.}
 {Example:}
 {Eftirfarandi breytingar verða á X. gr. laganna:}
 {a. 1. mgr. orðast svo:}
-{   [new paragraph text]}
+{ [new paragraph text]}
 {b. 2. mgr. fellur brott.}
 
 ### 2. gr.
+
 {...}
 
 ### {N}. gr.
+
 {...}
 
 ### {N+1}. gr.
+
 Lög þessi öðlast gildi {dagsetning}.
 
 ---
@@ -50,7 +56,7 @@ Lög þessi öðlast gildi {dagsetning}.
 
 {Hverju frumvarpið breytir á yfirstigi (ekki grein fyrir grein — það kemur í athugasemdum við einstakar greinar). Skipa breytingunum saman þemabundið.}
 
-{*Dæmi fyrir lög nr. 90/2018 (persónuverndarlöggjöfin) — staðgangur fyrir tilteknar greinar viðkomandi máls:*}
+{_Dæmi fyrir lög nr. 90/2018 (persónuverndarlöggjöfin) — staðgangur fyrir tilteknar greinar viðkomandi máls:_}
 
 - {Afnám refsiákvæða sem ganga lengra en {Art. N} {gerðarinnar} krefst (sbr. niðurstöðu {finding-id}).}
 - {Samræming {bóta- / viðurlaga- / leyfis-} ákvæðis við {Art. N} {gerðarinnar} (sbr. niðurstöðu {finding-id}).}
@@ -77,7 +83,7 @@ Lög þessi öðlast gildi {dagsetning}.
 
 #### 4.4 Bókun 35 og samræmi (Art. 6 EES)
 
-{Ef dómaframkvæmd dómstóls Evrópusambandsins eða EFTA-dómstólsins hefur fest niður lágmarkskröfur gerðarinnar á annan veg en hin íslenska útfærsla, tilgreina þá dóma og hvernig frumvarpið færir íslensk lög til samræmis. Dæmi fyrir lög nr. 90/2018: C-300/21 *Österreichische Post* (varðandi 82. gr. GDPR / 51. gr. lög 90/2018); C-807/21 *Deutsche Wohnen* (varðandi 83. gr. GDPR / 46. gr. lög 90/2018). Önnur frumvörp munu vísa í dóma sem snerta þá tilteknu gerð sem um ræðir.}
+{Ef dómaframkvæmd dómstóls Evrópusambandsins eða EFTA-dómstólsins hefur fest niður lágmarkskröfur gerðarinnar á annan veg en hin íslenska útfærsla, tilgreina þá dóma og hvernig frumvarpið færir íslensk lög til samræmis. Dæmi fyrir lög nr. 90/2018: C-300/21 _Österreichische Post_ (varðandi 82. gr. GDPR / 51. gr. lög 90/2018); C-807/21 _Deutsche Wohnen_ (varðandi 83. gr. GDPR / 46. gr. lög 90/2018). Önnur frumvörp munu vísa í dóma sem snerta þá tilteknu gerð sem um ræðir.}
 
 ### 5. Samráð
 
@@ -130,7 +136,7 @@ Lög þessi öðlast gildi {dagsetning}.
 
 {Tilvísun í undirliggjandi heimild í gerðinni — tilgreina tiltekna grein gerðarinnar. T.d. fyrir lög nr. 90/2018: "Breytingin færir ákvæðið til samræmis við 84. gr. reglugerðar (ESB) 2016/679, sem felur aðildarríkjum það í sjálfsvald hvort þau setji refsiákvæði til viðbótar stjórnvaldssektum, en gerir ekki skyldu til þess." Önnur frumvörp vísa í þá grein gerðarinnar sem á við málið.}
 
-{Ef við á: tilvísun í dómaframkvæmd CJEU eða EFTA-dómstólsins sem hefur skýrt lágmarkskröfur (t.d. C-300/21 *Österreichische Post*).}
+{Ef við á: tilvísun í dómaframkvæmd CJEU eða EFTA-dómstólsins sem hefur skýrt lágmarkskröfur (t.d. C-300/21 _Österreichische Post_).}
 
 ### Um 2. gr.
 
@@ -148,10 +154,10 @@ Lög þessi öðlast gildi {dagsetning}.
 
 ## Fylgiskjal — Samanburðartafla
 
-| IS-grein | Núgildandi ákvæði | Tillaga frumvarpsins | Samsvarandi ákvæði {tilskipunar | reglugerðar | ákvörðunar} (ESB) {YYYY/NN} (EES-viðbætir) |
-|---|---|---|---|
+| IS-grein | Núgildandi ákvæði                   | Tillaga frumvarpsins                                            | Samsvarandi ákvæði {tilskipunar                                                                  | reglugerðar | ákvörðunar} (ESB) {YYYY/NN} (EES-viðbætir) |
+| -------- | ----------------------------------- | --------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ | ----------- | ------------------------------------------ |
 | {N}. gr. | {verbatim quote of current IS text} | {verbatim quote of proposed amended IS text, or "fellur brott"} | {Art. N — verbatim authentic IS text from EES-viðbætir, or "engin samsvarandi grein í gerðinni"} |
-| {…} | {…} | {…} | {…} |
+| {…}      | {…}                                 | {…}                                                             | {…}                                                                                              |
 
 **Athugasemd**: Samanburðartaflan sýnir hverja efnislega breytingu sem frumvarpið leggur til, ásamt undirliggjandi ákvæði gerðarinnar í þeirri opinberu íslensku þýðingu sem birt er í EES-viðbæti við Stjórnartíðindi Evrópusambandsins (eða sem fylgiskjal við hin íslensku innleiðingarlög, eftir því sem við á). Þar sem dálkur (c) sýnir „engin samsvarandi grein í gerðinni" er um heimasmíðað ákvæði (Pattern G30) að ræða og frumvarpið leggur til brottfall þess án nýrrar útfærslu.
 

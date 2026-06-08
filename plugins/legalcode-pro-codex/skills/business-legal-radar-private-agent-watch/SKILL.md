@@ -65,7 +65,7 @@ Use saved search queries only when no stable identifier exists. Mark unsupported
 Before setup, show:
 
 | Bundle | Kind | Jurisdiction | Source type | Target/query | Trigger | Cadence | Status |
-| --- | --- | --- | --- | --- | --- | --- | --- |
+| ------ | ---- | ------------ | ----------- | ------------ | ------- | ------- | ------ |
 
 Include discovery evidence, exact aliases, noise controls, coverage gaps, cadence, and timezone.
 

@@ -21,7 +21,7 @@ allowed-tools: Read, Write, Bash
 ## When to use
 
 After a substantive markdown deliverable is frozen — typically the end of the
-*legalcode-anti-gold-plating-is* skill's Stage 9e or Stage 10e — render to a
+_legalcode-anti-gold-plating-is_ skill's Stage 9e or Stage 10e — render to a
 self-contained `.docx` that is fit for delivery to lawyers, Alþingi
 committees, ESA, or regulated parties.
 
@@ -30,15 +30,15 @@ freezes content before rendering; if content is still changing, render later.
 
 ## Typography
 
-| Element | Point size | docx-js size (half-points) | Notes |
-|---|---|---|---|
-| Body / default | 10pt | 20 | Arial; tight leading |
-| Heading 1 | 14pt | 28 | bold |
-| Heading 2 | 12pt | 24 | bold |
-| Heading 3 | 10pt | 20 | bold |
-| Heading 4 | 10pt | 20 | bold italic |
-| Tables (cell text) | 9pt | 18 | one step below body |
-| Footnotes / captions | 8pt | 16 | |
+| Element              | Point size | docx-js size (half-points) | Notes                |
+| -------------------- | ---------- | -------------------------- | -------------------- |
+| Body / default       | 10pt       | 20                         | Arial; tight leading |
+| Heading 1            | 14pt       | 28                         | bold                 |
+| Heading 2            | 12pt       | 24                         | bold                 |
+| Heading 3            | 10pt       | 20                         | bold                 |
+| Heading 4            | 10pt       | 20                         | bold italic          |
+| Tables (cell text)   | 9pt        | 18                         | one step below body  |
+| Footnotes / captions | 8pt        | 16                         |                      |
 
 Page: US Letter or A4 with 1-inch (1440 DXA) margins. Line spacing: single.
 Paragraph spacing: 0pt before, 6pt after. Heading paragraph spacing: 12pt
@@ -49,7 +49,7 @@ before, 4pt after.
 The `.docx` must produce **zero prompts** when opened in Word, LibreOffice, or
 Pages. Three failure modes are explicitly forbidden:
 
-- **No Word `{ TOC \o ... }` field codes.** The skill renders any *Efnisyfirlit*
+- **No Word `{ TOC \o ... }` field codes.** The skill renders any _Efnisyfirlit_
   section as ordinary headings and bullets in the markdown source; pandoc must
   be invoked **without** `--toc`.
 - **No `<w:attachedTemplate>` references** in `word/settings.xml`. The
@@ -64,7 +64,7 @@ Pages. Three failure modes are explicitly forbidden:
 ## Table borders (mandatory)
 
 Pandoc renders markdown tables with no `tblBorders` element by default —
-every `<w:tbl>` inherits the bare *„Table"* style and the result on screen is
+every `<w:tbl>` inherits the bare _„Table"_ style and the result on screen is
 a grid of text floating in white space. For a long legal document with many
 tables this fuses the rows visually and forces the reader to count cells.
 
@@ -151,7 +151,7 @@ renderer is misconfigured — re-run with explicit `--metadata lang=is`.
 
 - Does not edit the markdown source. If the prose needs work, fix it upstream.
 - Does not generate a Table of Contents — the markdown must contain a static
-  *Efnisyfirlit* section.
+  _Efnisyfirlit_ section.
 - Does not bundle the Anthropic docx skill. If that skill is available in your
   runtime, use it directly with the typography brief in the parent skill; this
   renderer is the fallback when it is not.
