@@ -8,6 +8,8 @@ Includes:
 - 13 Legalcode skills for setup, public/pro search, contract review, privacy, legal research, litigation chronology, tabular review, **private Business Legal Radar monitoring**, **Icelandic gold-plating (gullhúðun) analysis**, and **DOCX rendering**
 - CLI install helper at `scripts/install-legalcode-cli.sh`
 
+This directory is an Agent Plugins v1.0.0 package. Portable clients load `plugin.json`, `skills/`, and `mcp.json`; Claude Code continues to load `.claude-plugin/plugin.json` and `.mcp.json`. Authentication is client-managed and is not stored in either MCP configuration file.
+
 ## Skills
 
 1. `legalcode-mcp-setup`

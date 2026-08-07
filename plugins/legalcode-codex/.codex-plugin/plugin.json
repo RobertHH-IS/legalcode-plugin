@@ -1,6 +1,6 @@
 {
   "name": "legalcode-codex",
-  "version": "0.2.0",
+  "version": "1.0.0",
   "description": "Legalcode for Codex with public Legalcode MCP access and 13 legal skills (incl. private legal radar and Icelandic gold-plating analysis).",
   "author": {
     "name": "Legalcode",

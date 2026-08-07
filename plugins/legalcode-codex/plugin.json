@@ -1,0 +1,21 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "legalcode-codex",
+  "version": "1.0.0",
+  "description": "Legalcode for Codex with public Legalcode MCP access and 13 legal skills (incl. private legal radar and Icelandic gold-plating analysis).",
+  "author": {
+    "name": "Legalcode",
+    "url": "https://legalcode.md"
+  },
+  "homepage": "https://legalcode.md",
+  "repository": "https://github.com/RobertHH-IS/legalcode-plugin",
+  "keywords": [
+    "legal",
+    "mcp",
+    "codex",
+    "contracts",
+    "compliance",
+    "iceland",
+    "gold-plating"
+  ]
+}
