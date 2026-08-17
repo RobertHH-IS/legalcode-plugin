@@ -29,9 +29,9 @@
     "privacyPolicyURL": "https://legalcode.md/privacy",
     "termsOfServiceURL": "https://legalcode.md/terms",
     "defaultPrompt": [
-      "Find the current Icelandic law on data protection and cite the primary source.",
-      "Trace which Icelandic law implements the GDPR.",
-      "Show me how Legalcode can research a legal issue and verify the resulting authorities."
+      "Research an Icelandic legal issue using current legislation and case law, with citations to the primary sources.",
+      "Find the EU legislation and decisions relevant to a legal question, then trace any national implementation measures.",
+      "Compare primary legal authorities across two jurisdictions and explain the material differences and coverage gaps."
     ],
     "brandColor": "#0F766E",
     "composerIcon": "./assets/legalcode-composer-48.png",
