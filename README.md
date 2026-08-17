@@ -27,11 +27,14 @@ Website: https://legalcode.md
 8. `legalcode-statute-analysis`
 9. `legalcode-case-timeline-builder`
 10. `legalcode-tabular-review`
-11. `business-legal-radar-private-agent-watch`
-12. `legalcode-anti-gold-plating-is` — Icelandic gold-plating (gullhúðun) analysis for EEA-implementation acts. Section-by-section detection of _innleiðing umfram lágmark_, traced through the Alþingi pre-law record (frumvarp, greinargerð, umsagnir, nefndarálit, breytingartillögur), with per-finding impact retrieval via targeted MCP searches. Applies the Davidson Five + Pattern G30 framework, runs Iron Law 7 counter-argument stress tests on every HIGH/CRITICAL finding, and produces a full _Gullhúðunarskýrsla_ plus an optional remediation _breytingafrumvarp_ — both rendered as standalone Word documents.
-13. `legalcode-docx-render` — Self-contained DOCX renderer with Icelandic legal typography (Arial 10pt body, sized headings, 1-inch margins), thin horizontal borders between table rows, and a mandatory standalone-document audit so the output opens in Word, LibreOffice, or Pages with zero update prompts. Pandoc-backed with a post-render Python helper for table-border injection. Acts as the rendering back end for `legalcode-anti-gold-plating-is` but works as a general-purpose Icelandic-legal DOCX renderer for any markdown source.
 
-All four bundles ship the same skill tree. Each skill explains when its workflow requires Pro MCP capabilities; the bundles differ by target client and MCP endpoint.
+All four bundles ship these 10 core skills. Each skill explains when its workflow requires Pro MCP capabilities; the bundles differ by target client and MCP endpoint.
+
+## More Skills
+
+Additional Legalcode skills are available in the public repository:
+
+https://github.com/RobertHH-IS/legalcode-plugin/tree/main/more-skills
 
 ## Agent Plugins v1
 

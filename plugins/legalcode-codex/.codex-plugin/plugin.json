@@ -1,7 +1,7 @@
 {
   "name": "legalcode-codex",
-  "version": "1.0.2",
-  "description": "Legalcode for Codex with public Legalcode MCP access and 13 legal skills (incl. private legal radar and Icelandic gold-plating analysis).",
+  "version": "1.0.3",
+  "description": "Legalcode for Codex with public Legalcode MCP access and 10 core legal research and drafting skills.",
   "author": {
     "name": "Legalcode",
     "url": "https://legalcode.md"
@@ -13,7 +13,7 @@
   "interface": {
     "displayName": "Legalcode",
     "shortDescription": "Free legal research and drafting skills for Codex",
-    "longDescription": "Bundle the hosted public Legalcode MCP endpoint with 13 Legalcode skills for legal research, contract review, privacy, litigation, private legal radar monitoring, Icelandic gold-plating analysis, DOCX rendering, and document workflows.",
+    "longDescription": "Bundle the hosted public Legalcode MCP endpoint with 10 core Legalcode skills for legal research, contract review, privacy, litigation, and document workflows. Additional optional skills are available in the plugin repository.",
     "developerName": "Legalcode",
     "category": "Productivity",
     "capabilities": ["Read"],

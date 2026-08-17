@@ -17,8 +17,9 @@ from jsonschema.validators import validator_for
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
-PLUGIN_VERSION = "1.0.2"
+PLUGIN_VERSION = "1.0.3"
 REPOSITORY_URL = "https://github.com/RobertHH-IS/legalcode-plugin"
+MORE_SKILLS_URL = f"{REPOSITORY_URL}/tree/main/more-skills"
 PLUGIN_SCHEMA_URL = "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json"
 MCP_SCHEMA_URL = "https://agent-plugins.org/schemas/1.0.0/mcp.schema.json"
 PUBLIC_MCP_URL = "https://mcp.legalcode.md/mcp"
@@ -40,12 +41,9 @@ RETIRED_MCP_TOOL_NAMES = {
 }
 
 EXPECTED_SKILLS = {
-    "business-legal-radar-private-agent-watch",
-    "legalcode-anti-gold-plating-is",
     "legalcode-case-timeline-builder",
     "legalcode-contract-review",
     "legalcode-document-qa",
-    "legalcode-docx-render",
     "legalcode-dpia-generator",
     "legalcode-legal-memorandum",
     "legalcode-mcp-setup",
@@ -53,6 +51,11 @@ EXPECTED_SKILLS = {
     "legalcode-public-search",
     "legalcode-statute-analysis",
     "legalcode-tabular-review",
+}
+ADDITIONAL_SKILLS = {
+    "business-legal-radar-private-agent-watch",
+    "legalcode-anti-gold-plating-is",
+    "legalcode-docx-render",
 }
 
 
@@ -351,6 +354,39 @@ def main() -> int:
             )
         validate_marketplaces(failures)
         root_readme = (REPO_ROOT / "README.md").read_text(encoding="utf-8")
+        additional_skills_root = REPO_ROOT / "more-skills"
+        additional_skill_directories = {
+            path.name: path
+            for path in additional_skills_root.iterdir()
+            if path.is_dir() and (path / "SKILL.md").is_file()
+        }
+        require(
+            set(additional_skill_directories) == ADDITIONAL_SKILLS,
+            "more-skills inventory differs from the expected additional skills",
+            failures,
+        )
+        require(
+            (additional_skills_root / "README.md").is_file(),
+            "more-skills/README.md must explain the optional skill inventory",
+            failures,
+        )
+        skill_directories.extend(additional_skill_directories.values())
+        require(
+            MORE_SKILLS_URL in root_readme,
+            "README.md must link to the additional skills directory",
+            failures,
+        )
+        for bundle in BUNDLES:
+            bundle_root = REPO_ROOT / "plugins" / bundle.name
+            for reference_path in (
+                bundle_root / "README.md",
+                bundle_root / "skills" / "legalcode-mcp-setup" / "SKILL.md",
+            ):
+                require(
+                    MORE_SKILLS_URL in reference_path.read_text(encoding="utf-8"),
+                    f"{reference_path.relative_to(REPO_ROOT)} must link to more skills",
+                    failures,
+                )
         for retired_cli_instruction in (
             "install-legalcode-cli.sh",
             "npm install -g legalcode",
@@ -373,7 +409,8 @@ def main() -> int:
 
     print(
         f"Agent Plugins conformance passed: {len(BUNDLES)} bundles, "
-        f"{len(BUNDLES) * len(EXPECTED_SKILLS)} skills."
+        f"{len(BUNDLES) * len(EXPECTED_SKILLS)} bundled skills, "
+        f"{len(ADDITIONAL_SKILLS)} additional skills."
     )
     return 0
 

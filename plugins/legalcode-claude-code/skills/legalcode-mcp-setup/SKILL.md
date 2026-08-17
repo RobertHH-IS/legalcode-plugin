@@ -80,3 +80,4 @@ arguments to Legalcode; do not upload client documents through search calls.
 - Install docs: https://legalcode.md/docs/install
 - Public MCP: https://mcp.legalcode.md/mcp
 - Pro MCP: https://mcppro.legalcode.md/mcp
+- More Legalcode skills: https://github.com/RobertHH-IS/legalcode-plugin/tree/main/more-skills
