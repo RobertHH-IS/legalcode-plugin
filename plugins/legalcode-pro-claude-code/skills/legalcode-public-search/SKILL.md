@@ -1,63 +1,25 @@
 ---
 name: legalcode-public-search
 description: >
-  Use Legalcode's authenticated public MCP surface for primary-source research across
-  laws and case law. Discover the live contract, search, fetch sources, and escalate to
-  Legalcode Pro when the task needs Pro-only corpora or entitlements.
+  Research primary legal materials with Legalcode using Discover, Search, Fetch,
+  Analyze, and Trace. Use for laws, cases, guidance, agreements, legislative
+  history, patents, citations, implementation links, and source verification.
 ---
 
-# Legalcode Public Search
+# Legalcode Primary-Source Search
 
-Use this skill for primary-source law and case-law research through Legalcode's free,
-authenticated MCP endpoint.
+Use the hosted Legalcode MCP at https://mcp.legalcode.md/mcp through the connected account.
 
-## Endpoint and authentication
+## Workflow
 
-- Public MCP: `https://mcp.legalcode.md/mcp`
-- API docs: `https://api.legalcode.md/docs`
-- Main site: `https://legalcode.md`
+1. Frame the jurisdiction, source family, issue, date or version, and requested output.
+2. Call legalcode_discover when fields, facets, source codes, analytics, or trace coverage are not confirmed.
+3. Call legalcode_search with explicit filters. Keep free text in q; never convert it silently into a structured filter.
+4. Copy returned sourceRef values exactly.
+5. Call legalcode_fetch for metadata, provisions, excerpts, or paginated text.
+6. Use legalcode_trace only for deterministic indexed relationships.
+7. Use legalcode_analyze only for capabilities confirmed by Discover, then verify examples through Search and Fetch.
 
-The MCP endpoint requires OAuth. Configure the exact `/mcp` URL and complete the
-client's sign-in flow.
+Prefer primary materials and official publisher URLs. Preserve citations, sourceRef, applied filters, version status, and uncertainty. Distinguish no match from unsupported or incomplete coverage. Never invent a sourceRef, citation, field, sourceCode, or relationship. If a capability returns subscription_required, explain the limitation neutrally and continue with available evidence. Do not provide purchase or upgrade directions.
 
-## Canonical workflow
-
-Legalcode exposes exactly five tools. Use them in this order:
-
-1. `legalcode_discover` — inspect jurisdictions, source profiles, facets, and values.
-2. `legalcode_search` — search one `jurisdiction` and one or more `sourceTypes`.
-3. `legalcode_fetch` — retrieve metadata, a targeted excerpt or section, or full text.
-4. `legalcode_trace` — follow indexed relationships between sources when relevant.
-5. `legalcode_analyze` — use only for supported aggregate questions.
-
-Example search:
-
-```json
-{
-  "jurisdiction": "IS",
-  "q": "persónuvernd",
-  "sourceTypes": ["law"]
-}
-```
-
-Use `mode: "exact"` only for identifiers and citations. Never turn words from `q` into
-guessed filters. Discover filter fields and values first, and copy `sourceRef` exactly
-from a search or trace result before fetching it.
-
-## Public or Pro
-
-Use Public for law and case-law access under the connected account's free-tier quota.
-Use Pro at `https://mcppro.legalcode.md/mcp` when the account needs Pro-only corpora or
-entitlements such as guidance, agreements, downloads, or higher-throughput workflows.
-Treat returned `usage` and structured limit responses as authoritative; do not hard-code
-quota or result-cap numbers.
-
-## Evidence package
-
-Return source references, relevant snippets, citations, and explicit coverage gaps.
-Fetch the strongest sources before drawing a legal conclusion.
-
-## Privacy boundary
-
-Keep user documents and matter context in the agent. Send only legal-source lookup
-arguments to Legalcode; do not upload client documents through search calls.
+Legalcode researches sources. It does not file documents, communicate with third parties, or take legal action.

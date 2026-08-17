@@ -1,0 +1,10 @@
+interface:
+  display_name: Legalcode Tabular Review
+  short_description: Compare legal documents in a verified table
+dependencies:
+  tools:
+    - type: mcp
+      value: legalcode
+      description: Search, retrieve, analyze, and trace primary legal sources
+      transport: streamable_http
+      url: https://mcp.legalcode.md/mcp

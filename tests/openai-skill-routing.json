@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "cases": [
+    {
+      "id": "activate_capabilities",
+      "prompt": "What can Legalcode do and which tools does it have?",
+      "expected_skill": "legalcode-mcp-tool-guide",
+      "expected_sequence": ["legalcode_discover"]
+    },
+    {
+      "id": "activate_aggregate_workflow",
+      "prompt": "Show a yearly trend and then verify representative decisions.",
+      "expected_skill": "legalcode-mcp-tool-guide",
+      "expected_sequence": [
+        "legalcode_discover",
+        "legalcode_analyze",
+        "legalcode_search",
+        "legalcode_fetch"
+      ]
+    },
+    {
+      "id": "activate_bad_filter_recovery",
+      "prompt": "Legalcode rejected my sourceCode and field. Help me retry.",
+      "expected_skill": "legalcode-mcp-tool-guide",
+      "expected_sequence": ["legalcode_discover", "legalcode_search"]
+    },
+    {
+      "id": "select_exact_authority",
+      "prompt": "Find Icelandic Act 90/2018 and fetch Article 1.",
+      "expected_skill": "legalcode-public-search",
+      "expected_sequence": ["legalcode_search", "legalcode_fetch"]
+    },
+    {
+      "id": "select_implementation_trace",
+      "prompt": "Trace CELEX 32016R0679 to the Icelandic implementing law and verify it.",
+      "expected_skill": "legalcode-public-search",
+      "expected_sequence": [
+        "legalcode_search",
+        "legalcode_trace",
+        "legalcode_fetch"
+      ]
+    },
+    {
+      "id": "nonactivation_weather",
+      "prompt": "What is the weather in Reykjavík tomorrow?",
+      "expected_skill": null,
+      "expected_sequence": []
+    },
+    {
+      "id": "nonactivation_contract_specific",
+      "prompt": "Review the attached contract and identify its main risks.",
+      "expected_skill": "legalcode-contract-review",
+      "expected_sequence": []
+    }
+  ]
+}

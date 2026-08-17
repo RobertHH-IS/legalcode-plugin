@@ -1,0 +1,40 @@
+{
+  "name": "legalcode",
+  "version": "1.1.0",
+  "description": "Primary-source legal research",
+  "author": {
+    "name": "Fordæmi ehf.",
+    "url": "https://legalcode.md"
+  },
+  "homepage": "https://legalcode.md",
+  "repository": "https://github.com/RobertHH-IS/legalcode-plugin",
+  "license": "MIT",
+  "keywords": [
+    "legal",
+    "research",
+    "mcp",
+    "primary-sources",
+    "contracts",
+    "compliance"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Legalcode",
+    "shortDescription": "Primary-source legal research",
+    "longDescription": "Search primary legal materials, retrieve source metadata and excerpts, analyze aggregate patterns, and trace relationships among laws, decisions, citations, and legislative history. Ten provider-neutral legal workflows are included; more are available from the public Legalcode plugin repository.",
+    "developerName": "Fordæmi ehf.",
+    "category": "Productivity",
+    "capabilities": ["Read"],
+    "websiteURL": "https://legalcode.md",
+    "privacyPolicyURL": "https://legalcode.md/privacy",
+    "termsOfServiceURL": "https://legalcode.md/terms",
+    "defaultPrompt": [
+      "Find the current Icelandic law on data protection and cite the primary source.",
+      "Trace which Icelandic law implements the GDPR.",
+      "Show me how Legalcode can research a legal issue and verify the resulting authorities."
+    ],
+    "brandColor": "#0F766E",
+    "composerIcon": "./assets/legalcode-composer-48.png",
+    "logo": "./assets/legalcode-directory-512.png"
+  }
+}

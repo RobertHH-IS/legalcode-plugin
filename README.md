@@ -2,22 +2,23 @@
 
 Public plugin distribution for Legalcode.
 
-Legalcode gives AI agents primary legal source lookup and reusable legal workflows. This repository ships free and Pro plugin bundles for Codex and Claude Code.
+Legalcode gives AI agents primary legal source lookup and reusable legal workflows. This repository ships OpenAI, Codex, and Claude Code plugin bundles.
 
 Website: https://legalcode.md
 
 ## Plugins
 
-| Plugin                      | Target      | MCP endpoint | Skills |
-| --------------------------- | ----------- | ------------ | -----: |
-| `legalcode-codex`           | Codex       | Public MCP   |     13 |
-| `legalcode-claude-code`     | Claude Code | Public MCP   |     13 |
-| `legalcode-pro-codex`       | Codex       | Pro MCP      |     13 |
-| `legalcode-pro-claude-code` | Claude Code | Pro MCP      |     13 |
+| Plugin                      | Target      | MCP endpoint  | Skills |
+| --------------------------- | ----------- | ------------- | -----: |
+| `legalcode-codex`           | Codex       | Public MCP    |     10 |
+| `legalcode-claude-code`     | Claude Code | Public MCP    |     10 |
+| `legalcode-pro-codex`       | Codex       | Pro MCP       |     10 |
+| `legalcode-pro-claude-code` | Claude Code | Pro MCP       |     10 |
+| `legalcode-openai`          | OpenAI      | Universal MCP |     10 |
 
 ## Included Skills
 
-1. `legalcode-mcp-setup`
+1. `legalcode-mcp-tool-guide`
 2. `legalcode-public-search`
 3. `legalcode-contract-review`
 4. `legalcode-nda-triage`
@@ -28,7 +29,7 @@ Website: https://legalcode.md
 9. `legalcode-case-timeline-builder`
 10. `legalcode-tabular-review`
 
-All four bundles ship these 10 core skills. Each skill explains when its workflow requires Pro MCP capabilities; the bundles differ by target client and MCP endpoint.
+All five bundles ship these 10 provider-neutral core skills. The OpenAI submission package contains no MCP manifest or local executable because the universal hosted MCP endpoint is configured separately in the OpenAI submission portal.
 
 ## More Skills
 
@@ -38,13 +39,13 @@ https://github.com/RobertHH-IS/legalcode-plugin/tree/main/more-skills
 
 ## Agent Plugins v1
 
-Every bundle implements the portable [Agent Plugins v1.0.0](https://agent-plugins.org/specification) package layout:
+The four Codex and Claude Code bundles implement the portable [Agent Plugins v1.0.0](https://agent-plugins.org/specification) package layout:
 
 - `plugin.json` declares portable identity and metadata.
 - `skills/*/SKILL.md` contains Agent Skills.
 - `mcp.json` declares the hosted Streamable HTTP MCP server.
 
-The existing `.codex-plugin/plugin.json`, `.claude-plugin/plugin.json`, and `.mcp.json` files remain in place for client-specific and legacy loading. Agent Plugins v1 does not define portable OAuth fields, so authentication is completed by the client rather than embedded in `mcp.json`.
+The OpenAI package keeps `plugin.json` and the ten skills but deliberately omits `mcp.json`; its universal MCP URL is submitted in the OpenAI portal. The existing `.codex-plugin/plugin.json`, `.claude-plugin/plugin.json`, and `.mcp.json` files remain in place for the other client-specific and legacy bundles.
 
 ## Public vs Pro
 
@@ -63,39 +64,6 @@ https://mcppro.legalcode.md/mcp
 ```
 
 Use Pro MCP for stronger search, guidance, agreements, downloads, and higher-throughput access. It also requires client-managed OAuth.
-
-## Codex Install
-
-Codex uses the repo-local marketplace manifest:
-
-```text
-.agents/plugins/marketplace.json
-```
-
-Free plugin path:
-
-```text
-./plugins/legalcode-codex
-```
-
-Pro plugin path:
-
-```text
-./plugins/legalcode-pro-codex
-```
-
-## Claude Code Install
-
-```text
-/plugin marketplace add RobertHH-IS/legalcode-plugin
-/plugin install legalcode-claude-code@legalcode
-```
-
-For Pro:
-
-```text
-/plugin install legalcode-pro-claude-code@legalcode
-```
 
 ## Conformance
 
