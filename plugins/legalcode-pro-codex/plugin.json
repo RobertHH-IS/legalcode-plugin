@@ -1,8 +1,8 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "legalcode-pro-codex",
-  "version": "1.0.1",
-  "description": "Legalcode Pro for Codex with Pro MCP access, 13 legal skills (incl. private legal radar and Icelandic gold-plating analysis), and CLI install helper.",
+  "version": "1.0.2",
+  "description": "Legalcode Pro for Codex with Pro MCP access and 13 legal skills, including private legal radar and Icelandic gold-plating analysis.",
   "author": {
     "name": "Legalcode",
     "url": "https://legalcode.md"

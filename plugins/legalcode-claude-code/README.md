@@ -16,4 +16,4 @@ Install from the marketplace after this repo is public:
 /plugin install legalcode-claude-code@legalcode
 ```
 
-Use Pro when you need guidance, agreements, stronger search, more results per query, downloads, or CLI workflows.
+Use Pro when you need guidance, agreements, stronger search, downloads, or higher-throughput workflows.

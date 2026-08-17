@@ -8,12 +8,12 @@ Website: https://legalcode.md
 
 ## Plugins
 
-| Plugin                      | Target      | MCP endpoint | Skills | CLI            |
-| --------------------------- | ----------- | ------------ | -----: | -------------- |
-| `legalcode-codex`           | Codex       | Public MCP   |     13 | No             |
-| `legalcode-claude-code`     | Claude Code | Public MCP   |     13 | No             |
-| `legalcode-pro-codex`       | Codex       | Pro MCP      |     13 | Install helper |
-| `legalcode-pro-claude-code` | Claude Code | Pro MCP      |     13 | Install helper |
+| Plugin                      | Target      | MCP endpoint | Skills |
+| --------------------------- | ----------- | ------------ | -----: |
+| `legalcode-codex`           | Codex       | Public MCP   |     13 |
+| `legalcode-claude-code`     | Claude Code | Public MCP   |     13 |
+| `legalcode-pro-codex`       | Codex       | Pro MCP      |     13 |
+| `legalcode-pro-claude-code` | Claude Code | Pro MCP      |     13 |
 
 ## Included Skills
 
@@ -31,7 +31,7 @@ Website: https://legalcode.md
 12. `legalcode-anti-gold-plating-is` — Icelandic gold-plating (gullhúðun) analysis for EEA-implementation acts. Section-by-section detection of _innleiðing umfram lágmark_, traced through the Alþingi pre-law record (frumvarp, greinargerð, umsagnir, nefndarálit, breytingartillögur), with per-finding impact retrieval via targeted MCP searches. Applies the Davidson Five + Pattern G30 framework, runs Iron Law 7 counter-argument stress tests on every HIGH/CRITICAL finding, and produces a full _Gullhúðunarskýrsla_ plus an optional remediation _breytingafrumvarp_ — both rendered as standalone Word documents.
 13. `legalcode-docx-render` — Self-contained DOCX renderer with Icelandic legal typography (Arial 10pt body, sized headings, 1-inch margins), thin horizontal borders between table rows, and a mandatory standalone-document audit so the output opens in Word, LibreOffice, or Pages with zero update prompts. Pandoc-backed with a post-render Python helper for table-border injection. Acts as the rendering back end for `legalcode-anti-gold-plating-is` but works as a general-purpose Icelandic-legal DOCX renderer for any markdown source.
 
-All four bundles ship the same skill tree. Each skill explains when its workflow requires Pro MCP capabilities; the bundles differ by target client, MCP endpoint, and whether they include the CLI install helper.
+All four bundles ship the same skill tree. Each skill explains when its workflow requires Pro MCP capabilities; the bundles differ by target client and MCP endpoint.
 
 ## Agent Plugins v1
 
@@ -93,22 +93,6 @@ For Pro:
 ```text
 /plugin install legalcode-pro-claude-code@legalcode
 ```
-
-## Pro CLI Helper
-
-The Pro plugins include:
-
-```text
-scripts/install-legalcode-cli.sh
-```
-
-That helper runs:
-
-```bash
-npm install -g legalcode
-```
-
-The npm package must be published separately before this command works for external users.
 
 ## Conformance
 

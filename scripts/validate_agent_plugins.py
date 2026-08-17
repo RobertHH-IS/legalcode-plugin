@@ -17,7 +17,7 @@ from jsonschema.validators import validator_for
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
-PLUGIN_VERSION = "1.0.1"
+PLUGIN_VERSION = "1.0.2"
 REPOSITORY_URL = "https://github.com/RobertHH-IS/legalcode-plugin"
 PLUGIN_SCHEMA_URL = "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json"
 MCP_SCHEMA_URL = "https://agent-plugins.org/schemas/1.0.0/mcp.schema.json"
@@ -141,6 +141,7 @@ def validate_bundle(
     portable_mcp_path = bundle_root / "mcp.json"
     vendor_manifest_path = bundle_root / bundle.vendor_manifest
     legacy_mcp_path = bundle_root / ".mcp.json"
+    legacy_cli_helper_path = bundle_root / "scripts" / "install-legalcode-cli.sh"
 
     portable_manifest = load_json(portable_manifest_path)
     portable_mcp = load_json(portable_mcp_path)
@@ -181,6 +182,20 @@ def validate_bundle(
         f"{prefix} portable and vendor descriptions must match",
         failures,
     )
+    require(
+        not legacy_cli_helper_path.exists(),
+        f"{prefix} must not ship the unpublished Legalcode CLI install helper",
+        failures,
+    )
+    for manifest_path, manifest in (
+        (portable_manifest_path, portable_manifest),
+        (vendor_manifest_path, vendor_manifest),
+    ):
+        require(
+            "CLI install helper" not in json.dumps(manifest),
+            f"{manifest_path.relative_to(REPO_ROOT)} must not advertise a Legalcode CLI helper",
+            failures,
+        )
     require(
         portable_manifest.get("keywords") == vendor_manifest.get("keywords"),
         f"{prefix} portable and vendor keywords must match",
@@ -335,6 +350,17 @@ def main() -> int:
                 validate_bundle(bundle, plugin_schema, mcp_schema, failures)
             )
         validate_marketplaces(failures)
+        root_readme = (REPO_ROOT / "README.md").read_text(encoding="utf-8")
+        for retired_cli_instruction in (
+            "install-legalcode-cli.sh",
+            "npm install -g legalcode",
+            "CLI install helper",
+        ):
+            require(
+                retired_cli_instruction not in root_readme,
+                f"README.md must not advertise {retired_cli_instruction}",
+                failures,
+            )
         validate_skills(skill_directories, failures)
     except Exception as error:  # Surface malformed files and unavailable schemas clearly.
         failures.append(str(error))

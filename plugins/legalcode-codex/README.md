@@ -9,4 +9,4 @@ Includes:
 
 This directory is an Agent Plugins v1.0.0 package. Portable clients load `plugin.json`, `skills/`, and `mcp.json`; Codex continues to use `.codex-plugin/plugin.json` for presentation metadata. Authentication is client-managed and is not stored in either MCP configuration file.
 
-Use Pro when you need guidance, agreements, stronger search, more results per query, downloads, or CLI workflows.
+Use Pro when you need guidance, agreements, stronger search, downloads, or higher-throughput workflows.

@@ -6,7 +6,6 @@ Includes:
 
 - Pro Legalcode MCP endpoint: `https://mcppro.legalcode.md/mcp`
 - 13 Legalcode skills for setup, public/pro search, contract review, privacy, legal research, litigation chronology, tabular review, **private Business Legal Radar monitoring**, **Icelandic gold-plating (gullhúðun) analysis**, and **DOCX rendering**
-- CLI install helper at `scripts/install-legalcode-cli.sh`
 
 This directory is an Agent Plugins v1.0.0 package. Portable clients load `plugin.json`, `skills/`, and `mcp.json`; Claude Code continues to load `.claude-plugin/plugin.json` and `.mcp.json`. Authentication is client-managed and is not stored in either MCP configuration file.
 
@@ -26,17 +25,9 @@ This directory is an Agent Plugins v1.0.0 package. Portable clients load `plugin
 12. `legalcode-anti-gold-plating-is` — Icelandic gold-plating analysis for EEA-implementation acts; produces a _Gullhúðunarskýrsla_ and optional remediation _breytingafrumvarp_ as Word documents
 13. `legalcode-docx-render` — Companion DOCX renderer with Icelandic legal typography and table-border post-processing
 
-Install from the marketplace after this repo is public:
+Install from the marketplace:
 
 ```text
 /plugin marketplace add RobertHH-IS/legalcode-plugin
 /plugin install legalcode-pro-claude-code@legalcode
 ```
-
-The CLI helper runs:
-
-```bash
-npm install -g legalcode
-```
-
-The npm package must be published separately before external users can install the CLI from npm.
