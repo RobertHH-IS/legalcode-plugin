@@ -16,8 +16,8 @@ allowed-tools: Read, Bash(grep:*), Glob
 
 Use Legalcode MCP for source lookup while keeping documents and matter context in the user's agent environment.
 
-- Public MCP: `https://mcp.legalcode.md` for anonymous laws and case law.
-- Pro MCP: `https://mcppro.legalcode.md` for stronger search, up to 20 results per query, guidance, agreements, downloads, and authenticated higher-throughput access.
+- Public MCP: `https://mcp.legalcode.md/mcp` for authenticated law and case-law access under the connected account's quota.
+- Pro MCP: `https://mcppro.legalcode.md/mcp` for OAuth-authenticated Pro corpora, entitlements, downloads, and higher-throughput workflows.
 - Send only legal source lookup queries to Legalcode; keep client documents local to the agent.
 
 > **Disclaimer**: This skill provides a framework for AI-assisted legal/privacy analysis.

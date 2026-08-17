@@ -1,6 +1,6 @@
 {
   "name": "legalcode-claude-code",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Legalcode for Claude Code with public Legalcode MCP access and 13 legal skills (incl. private legal radar and Icelandic gold-plating analysis).",
   "author": {
     "name": "Legalcode"

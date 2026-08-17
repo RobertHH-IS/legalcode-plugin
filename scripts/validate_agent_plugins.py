@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import json
+import re
 import shutil
 import subprocess
 import sys
@@ -16,12 +17,27 @@ from jsonschema.validators import validator_for
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
-PLUGIN_VERSION = "1.0.0"
+PLUGIN_VERSION = "1.0.1"
 REPOSITORY_URL = "https://github.com/RobertHH-IS/legalcode-plugin"
 PLUGIN_SCHEMA_URL = "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json"
 MCP_SCHEMA_URL = "https://agent-plugins.org/schemas/1.0.0/mcp.schema.json"
 PUBLIC_MCP_URL = "https://mcp.legalcode.md/mcp"
 PRO_MCP_URL = "https://mcppro.legalcode.md/mcp"
+RETIRED_MCP_TOOL_NAMES = {
+    "analyze_cases",
+    "analyze_pre_laws",
+    "fetch_source",
+    "find_cases_for_law",
+    "find_laws_for_case",
+    "get_facets",
+    "list_jurisdictions",
+    "search_agreements",
+    "search_cases",
+    "search_guidance",
+    "search_laws",
+    "search_patents",
+    "search_pre_laws",
+}
 
 EXPECTED_SKILLS = {
     "business-legal-radar-private-agent-watch",
@@ -271,6 +287,29 @@ def validate_skills(skill_directories: list[Path], failures: list[str]) -> None:
         )
         return
     for skill_directory in skill_directories:
+        for markdown_path in skill_directory.rglob("*.md"):
+            content = markdown_path.read_text(encoding="utf-8")
+            relative_path = markdown_path.relative_to(REPO_ROOT)
+            for tool_name in sorted(RETIRED_MCP_TOOL_NAMES):
+                if re.search(rf"\b{re.escape(tool_name)}\b", content):
+                    failures.append(
+                        f"{relative_path} references retired MCP tool {tool_name}"
+                    )
+            if re.search(r"`guide`", content):
+                failures.append(
+                    f"{relative_path} references retired MCP tool guide"
+                )
+            if re.search(
+                r"https://mcp(?:pro)?\.legalcode\.md(?!/mcp)",
+                content,
+            ):
+                failures.append(
+                    f"{relative_path} uses a Legalcode MCP hostname without /mcp"
+                )
+            if re.search(r'["\']jurisdictions["\']\s*:', content):
+                failures.append(
+                    f"{relative_path} uses plural jurisdictions in an MCP call"
+                )
         result = subprocess.run(
             [executable, "validate", str(skill_directory)],
             check=False,
