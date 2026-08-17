@@ -32,7 +32,7 @@ Coverage varies by jurisdiction and source. Important conclusions should be chec
 ## Submission metadata
 
 - Name: Legalcode
-- Version: 2.0.1
+- Version: 1.1.0
 - Developer: Fordæmi ehf.
 - Category: Productivity
 - Website: https://legalcode.md

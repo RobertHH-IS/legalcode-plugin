@@ -18,7 +18,6 @@ from jsonschema.validators import validator_for
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 PLUGIN_VERSION = "1.1.0"
-OPENAI_PLUGIN_VERSION = "2.0.1"
 REPOSITORY_URL = "https://github.com/RobertHH-IS/legalcode-plugin"
 MORE_SKILLS_URL = f"{REPOSITORY_URL}/tree/main/more-skills"
 PLUGIN_SCHEMA_URL = "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json"
@@ -318,12 +317,12 @@ def validate_openai_bundle(
         failures,
     )
     require(
-        portable.get("version") == OPENAI_PLUGIN_VERSION,
+        portable.get("version") == PLUGIN_VERSION,
         "OpenAI portable version drifted",
         failures,
     )
     require(
-        vendor.get("version") == OPENAI_PLUGIN_VERSION,
+        vendor.get("version") == PLUGIN_VERSION,
         "OpenAI vendor version drifted",
         failures,
     )
