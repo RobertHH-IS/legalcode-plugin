@@ -19,14 +19,14 @@ the same endpoint through its **With MCP** submission flow.
 
 ## MCP capabilities
 
-The canonical tool surface is legalcode_discover, legalcode_search, legalcode_fetch, legalcode_analyze, and legalcode_trace. The tools search indexed legal sources and may update private operational metering and telemetry. They cannot alter, publish, send, file, purchase, or delete legal materials or user content.
+The canonical tool surface is legalcode_discover, legalcode_search, legalcode_fetch, legalcode_analyze, and legalcode_trace. The tools only retrieve or compute legal information. They cannot alter, publish, send, file, purchase, or delete legal materials, relationships, user content, or public or external systems.
 
 Coverage varies by jurisdiction and source. Important conclusions should be checked against the returned legal citations, official links, and underlying primary materials.
 
 ## Submission metadata
 
 - Name: Legalcode
-- Version: 1.1.2
+- Version: 1.1.3
 - Developer: Fordæmi ehf.
 - Category: Productivity
 - Website: https://legalcode.md

@@ -4,71 +4,71 @@
   "app_info": {
     "display_name": "Legalcode",
     "subtitle": "Primary-source legal research",
-    "description": "Legal research grounded in primary sources. Legalcode gives ChatGPT direct access to statutes, case law, regulatory guidance, agreements, legislative history, and patents across jurisdictions worldwide, with human-readable citations and links to official materials, so you can verify conclusions against the original text instead of taking citations on faith.\n\nSearch goes far beyond full text. Sources are indexed with deep legal metadata, so you can filter by court, judge, counsel, party, outcome, cited legal basis, act type, issuing agency, or date — find the version of a law in force on a specific date, or jump straight to a known instrument by its official number or citation.\n\nFetch retrieves the text itself: a complete act or judgment, or one targeted provision — a single article or section — with the metadata to cite it.\n\nAnalyze turns the whole corpus into answers no single document holds: group decisions on a topic by year, cross-tabulate outcomes by court, chart a trend over time, or surface the legal bases courts cite most.\n\nTrace follows indexed relationships: which decisions apply a law, what a judgment cites, which national law implements an international instrument, and the legislative history behind a provision.\n\nCoverage varies by jurisdiction and source.",
+    "description": "Legal research grounded in primary sources. Legalcode gives ChatGPT direct access to statutes, case law, regulatory guidance, agreements, legislative history, and patents across more than 40 jurisdictions — tens of millions of indexed documents from official publishers, court databases, and regulatory portals — with human-readable citations and links to official materials, so you can verify conclusions against the original text instead of taking citations on faith.\n\nSearch goes far beyond full text. Sources are indexed with deep legal metadata, so you can filter by court, judge, counsel, party, outcome, cited legal basis, act type, issuing agency, or date — find the version of a law in force on a specific date, or jump straight to a known instrument by its official number or citation.\n\nFetch retrieves the text itself: a complete act or judgment, or one targeted provision — a single article or section — with the metadata to cite it.\n\nAnalyze turns the whole corpus into answers no single document holds: group decisions on a topic by year, cross-tabulate outcomes by court, chart a trend over time, or surface the legal bases courts cite most.\n\nTrace follows indexed relationships: which decisions apply a law, what a judgment cites, which national law implements an international instrument, and the legislative history behind a provision.\n\nLegalcode receives only your research queries — processed, never stored. Your documents stay in ChatGPT. Coverage varies by jurisdiction and source.",
     "category": "PRODUCTIVITY"
   },
   "tools": {
     "legalcode_discover": {
       "annotations": {
-        "readOnlyHint": false,
+        "readOnlyHint": true,
         "openWorldHint": false,
         "destructiveHint": false,
         "idempotentHint": true
       },
       "justifications": {
-        "read_only_justification": "Reads Legalcode coverage metadata but also updates private authentication, quota, rate-limit, and telemetry state. It cannot alter legal materials or user content.",
+        "read_only_justification": "Only retrieves Legalcode coverage and capability metadata without creating, updating, or deleting legal materials, relationships, or user content.",
         "open_world_justification": "Only reads Legalcode-controlled discovery metadata and does not publish content or modify external systems.",
         "destructive_justification": "Does not delete, overwrite, revoke access, or perform irreversible actions."
       }
     },
     "legalcode_search": {
       "annotations": {
-        "readOnlyHint": false,
+        "readOnlyHint": true,
         "openWorldHint": false,
         "destructiveHint": false,
         "idempotentHint": true
       },
       "justifications": {
-        "read_only_justification": "Searches indexed legal sources but also updates private quota, rate-limit, and telemetry state. It cannot alter legal materials or user content.",
+        "read_only_justification": "Only retrieves matching legal-source records without creating, updating, or deleting legal materials, relationships, or user content.",
         "open_world_justification": "Does not publish, send, or modify content in public or third-party systems.",
         "destructive_justification": "Does not delete, overwrite, revoke access, or perform irreversible actions."
       }
     },
     "legalcode_fetch": {
       "annotations": {
-        "readOnlyHint": false,
+        "readOnlyHint": true,
         "openWorldHint": false,
         "destructiveHint": false,
         "idempotentHint": true
       },
       "justifications": {
-        "read_only_justification": "Retrieves an indexed source but also updates private quota, rate-limit, and telemetry state. It cannot alter the source or user content.",
+        "read_only_justification": "Only retrieves metadata or text for an identified legal source without altering that source, related records, or user content.",
         "open_world_justification": "Does not publish content or modify the retrieved source, its publisher, or any third-party system.",
         "destructive_justification": "Does not delete, overwrite, revoke access, or perform irreversible actions."
       }
     },
     "legalcode_analyze": {
       "annotations": {
-        "readOnlyHint": false,
+        "readOnlyHint": true,
         "openWorldHint": false,
         "destructiveHint": false,
         "idempotentHint": true
       },
       "justifications": {
-        "read_only_justification": "Computes aggregates over indexed legal data but also updates private quota, rate-limit, and telemetry state. It cannot alter legal materials or user content.",
+        "read_only_justification": "Only computes aggregates over indexed legal data without creating, updating, or deleting legal materials, relationships, or user content.",
         "open_world_justification": "Performs analysis within Legalcode and does not publish results or modify external systems.",
         "destructive_justification": "Does not delete, overwrite, revoke access, or perform irreversible actions."
       }
     },
     "legalcode_trace": {
       "annotations": {
-        "readOnlyHint": false,
+        "readOnlyHint": true,
         "openWorldHint": false,
         "destructiveHint": false,
         "idempotentHint": true
       },
       "justifications": {
-        "read_only_justification": "Reads indexed relationships but also updates private quota, rate-limit, and telemetry state. It cannot create or alter relationships, legal materials, or user content.",
+        "read_only_justification": "Only retrieves indexed legal relationships without creating, updating, or deleting relationships, legal materials, or user content.",
         "open_world_justification": "Does not create relationships, publish content, or modify public or third-party systems.",
         "destructive_justification": "Does not delete, overwrite, revoke access, or perform irreversible actions."
       }

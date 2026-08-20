@@ -3,7 +3,7 @@
 ## Final listing
 
 - Name: Legalcode
-- Version: 1.1.2
+- Version: 1.1.3
 - Subtitle: Primary-source legal research
 - Category: Productivity
 - Developer identity: verified Fordæmi ehf.
@@ -21,7 +21,7 @@
 
 Description:
 
-> Legal research grounded in primary sources. Legalcode gives ChatGPT direct access to statutes, case law, regulatory guidance, agreements, legislative history, and patents across jurisdictions worldwide, with human-readable citations and links to official materials, so you can verify conclusions against the original text instead of taking citations on faith.
+> Legal research grounded in primary sources. Legalcode gives ChatGPT direct access to statutes, case law, regulatory guidance, agreements, legislative history, and patents across more than 40 jurisdictions — tens of millions of indexed documents from official publishers, court databases, and regulatory portals — with human-readable citations and links to official materials, so you can verify conclusions against the original text instead of taking citations on faith.
 >
 > Search goes far beyond full text. Sources are indexed with deep legal metadata, so you can filter by court, judge, counsel, party, outcome, cited legal basis, act type, issuing agency, or date — find the version of a law in force on a specific date, or jump straight to a known instrument by its official number or citation.
 >
@@ -31,7 +31,7 @@ Description:
 >
 > Trace follows indexed relationships: which decisions apply a law, what a judgment cites, which national law implements an international instrument, and the legislative history behind a provision.
 >
-> Coverage varies by jurisdiction and source.
+> Legalcode receives only your research queries — processed, never stored. Your documents stay in ChatGPT. Coverage varies by jurisdiction and source.
 
 Starter prompts:
 
@@ -64,9 +64,9 @@ The submission advertises exactly:
 4. legalcode_analyze
 5. legalcode_trace
 
-Every tool declares OAuth with legalcode.public.read, legalcode.laws.read, and legalcode.cases.read. Calls may update private authentication, quota, rate-limit, and telemetry state, so the annotations are:
+Every tool declares OAuth with legalcode.public.read, legalcode.laws.read, and legalcode.cases.read. The five research tools only retrieve or compute legal information and cannot change legal materials, relationships, user content, or public or external systems, so the annotations are:
 
-- readOnlyHint: false
+- readOnlyHint: true
 - openWorldHint: false
 - destructiveHint: false
 - idempotentHint: true
