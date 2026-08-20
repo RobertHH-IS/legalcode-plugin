@@ -1,26 +1,14 @@
 {
-  "name": "legalcode",
+  "name": "legalcode-local",
   "interface": {
-    "displayName": "Legalcode Plugins"
+    "displayName": "Legalcode Local"
   },
   "plugins": [
     {
-      "name": "legalcode-codex",
+      "name": "legalcode",
       "source": {
         "source": "local",
-        "path": "./plugins/legalcode-codex"
-      },
-      "policy": {
-        "installation": "AVAILABLE",
-        "authentication": "ON_INSTALL"
-      },
-      "category": "Productivity"
-    },
-    {
-      "name": "legalcode-pro-codex",
-      "source": {
-        "source": "local",
-        "path": "./plugins/legalcode-pro-codex"
+        "path": "./plugins/legalcode-openai"
       },
       "policy": {
         "installation": "AVAILABLE",
