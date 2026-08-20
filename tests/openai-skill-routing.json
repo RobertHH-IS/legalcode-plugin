@@ -1,16 +1,21 @@
 {
   "schema_version": 1,
+  "included_skills": ["legalcode-mcp-guide"],
   "cases": [
     {
-      "id": "activate_capabilities",
-      "prompt": "What can Legalcode do and which tools does it have?",
-      "expected_skill": "legalcode-mcp-tool-guide",
-      "expected_sequence": ["legalcode_discover"]
+      "id": "activate_source_coverage",
+      "prompt": "What Icelandic legal sources can Legalcode research, and how can I narrow a search?",
+      "expected_skill": "legalcode-mcp-guide",
+      "expected_sequence": ["legalcode_discover"],
+      "expected_output_contract": [
+        "Explain coverage and search options in ordinary language",
+        "Do not display raw schema keys or source codes"
+      ]
     },
     {
       "id": "activate_aggregate_workflow",
-      "prompt": "Show a yearly trend and then verify representative decisions.",
-      "expected_skill": "legalcode-mcp-tool-guide",
+      "prompt": "Show a yearly trend of Icelandic privacy decisions and then verify representative ones.",
+      "expected_skill": "legalcode-mcp-guide",
       "expected_sequence": [
         "legalcode_discover",
         "legalcode_analyze",
@@ -19,25 +24,59 @@
       ]
     },
     {
-      "id": "activate_bad_filter_recovery",
-      "prompt": "Legalcode rejected my sourceCode and field. Help me retry.",
-      "expected_skill": "legalcode-mcp-tool-guide",
-      "expected_sequence": ["legalcode_discover", "legalcode_search"]
-    },
-    {
-      "id": "select_exact_authority",
-      "prompt": "Find Icelandic Act 90/2018 and fetch Article 1.",
-      "expected_skill": "legalcode-public-search",
-      "expected_sequence": ["legalcode_search", "legalcode_fetch"]
-    },
-    {
-      "id": "select_implementation_trace",
-      "prompt": "Trace CELEX 32016R0679 to the Icelandic implementing law and verify it.",
-      "expected_skill": "legalcode-public-search",
+      "id": "activate_legislative_history",
+      "prompt": "Find the preparatory works and submitted opinions behind Icelandic Act 90/2018.",
+      "expected_skill": "legalcode-mcp-guide",
       "expected_sequence": [
+        "legalcode_discover",
         "legalcode_search",
         "legalcode_trace",
+        "legalcode_search",
         "legalcode_fetch"
+      ]
+    },
+    {
+      "id": "activate_exact_authority",
+      "prompt": "Find Icelandic Act 90/2018 and show me its first article.",
+      "expected_skill": "legalcode-mcp-guide",
+      "expected_sequence": [
+        "legalcode_discover",
+        "legalcode_search",
+        "legalcode_fetch"
+      ]
+    },
+    {
+      "id": "activate_implementation_trace",
+      "prompt": "Which Icelandic law implements the GDPR instrument identified by CELEX 32016R0679? Verify the result.",
+      "expected_skill": "legalcode-mcp-guide",
+      "expected_sequence": [
+        "legalcode_discover",
+        "legalcode_trace",
+        "legalcode_fetch"
+      ],
+      "expected_output_contract": [
+        "Use human-readable legal citations and official links",
+        "Do not display machine identifiers unless explicitly requested"
+      ]
+    },
+    {
+      "id": "activate_filter_recovery",
+      "prompt": "Legalcode rejected a filter I used for Icelandic court decisions. Check the available options and retry the search correctly.",
+      "expected_skill": "legalcode-mcp-guide",
+      "expected_sequence": ["legalcode_discover", "legalcode_search"],
+      "expected_output_contract": [
+        "Explain the correction in ordinary language",
+        "Do not echo raw field names or source codes unless requested"
+      ]
+    },
+    {
+      "id": "activate_incomplete_authority",
+      "prompt": "Find the decisions applying that law.",
+      "expected_skill": "legalcode-mcp-guide",
+      "expected_sequence": [],
+      "expected_output_contract": [
+        "Ask the user to identify the law and jurisdiction",
+        "Do not invent an authority or run an unbounded search"
       ]
     },
     {
@@ -47,9 +86,15 @@
       "expected_sequence": []
     },
     {
-      "id": "nonactivation_contract_specific",
-      "prompt": "Review the attached contract and identify its main risks.",
-      "expected_skill": "legalcode-contract-review",
+      "id": "nonactivation_contract_edit",
+      "prompt": "Rewrite this limitation-of-liability clause without researching the law.",
+      "expected_skill": null,
+      "expected_sequence": []
+    },
+    {
+      "id": "nonactivation_contract_edit_implicit",
+      "prompt": "Rewrite this limitation-of-liability clause for clarity while preserving its meaning.",
+      "expected_skill": null,
       "expected_sequence": []
     }
   ]

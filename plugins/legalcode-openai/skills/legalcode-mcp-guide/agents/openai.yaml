@@ -1,0 +1,11 @@
+interface:
+  display_name: "Legalcode MCP Guide"
+  short_description: "Choose and combine Legalcode MCP tools"
+  default_prompt: "Use $legalcode-mcp-guide to plan this primary-source legal research task."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "legalcode"
+      description: "Search, retrieve, analyze, and trace primary legal sources"
+      transport: "streamable_http"
+      url: "https://mcp.legalcode.md/mcp"

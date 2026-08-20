@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "legalcode": {
+      "type": "http",
+      "url": "https://mcp.legalcode.md/mcp",
+      "oauth_resource": "https://mcp.legalcode.md/mcp"
+    }
+  }
+}

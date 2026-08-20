@@ -4,35 +4,29 @@ Legalcode provides authenticated primary-source legal research through the unive
 
 https://mcp.legalcode.md/mcp
 
-This OpenAI submission bundle contains no command-line program, local server, hook, script, app manifest, or custom UI. OpenAI connects the MCP endpoint separately through the submission portal.
+This is the complete OpenAI submission bundle. It contains one provider-neutral skill,
+`legalcode-mcp-guide`, which explains when and how to combine Legalcode's five MCP tools.
+Specialized legal workflow skills are intentionally distributed separately and are not part of
+the plugin submission.
 
-## Included skills
+The bundle contains no command-line program, local server, hook, script, app manifest, or custom
+UI. It bundles the hosted MCP connection in `.mcp.json`; the OpenAI submission portal also receives
+the same endpoint through its **With MCP** submission flow.
 
-1. legalcode-mcp-tool-guide
-2. legalcode-public-search
-3. legalcode-contract-review
-4. legalcode-nda-triage
-5. legalcode-dpia-generator
-6. legalcode-document-qa
-7. legalcode-legal-memorandum
-8. legalcode-statute-analysis
-9. legalcode-case-timeline-builder
-10. legalcode-tabular-review
+## Included skill
 
-Additional optional skills are available at:
-
-https://github.com/RobertHH-IS/legalcode-plugin/tree/main/more-skills
+- `legalcode-mcp-guide`
 
 ## MCP capabilities
 
 The canonical tool surface is legalcode_discover, legalcode_search, legalcode_fetch, legalcode_analyze, and legalcode_trace. The tools search indexed legal sources and may update private operational metering and telemetry. They cannot alter, publish, send, file, purchase, or delete legal materials or user content.
 
-Coverage varies by jurisdiction and source. Important conclusions should be checked against the returned source references and underlying primary materials.
+Coverage varies by jurisdiction and source. Important conclusions should be checked against the returned legal citations, official links, and underlying primary materials.
 
 ## Submission metadata
 
 - Name: Legalcode
-- Version: 1.1.0
+- Version: 1.1.2
 - Developer: Fordæmi ehf.
 - Category: Productivity
 - Website: https://legalcode.md

@@ -1,0 +1,145 @@
+{
+  "$schema": "https://developers.openai.com/apps-sdk/schemas/chatgpt-app-submission.v1.json",
+  "schema_version": 1,
+  "app_info": {
+    "display_name": "Legalcode",
+    "subtitle": "Primary-source legal research",
+    "description": "Legal research grounded in primary sources. Legalcode gives ChatGPT direct access to statutes, case law, regulatory guidance, agreements, legislative history, and patents across jurisdictions worldwide, with human-readable citations and links to official materials, so you can verify conclusions against the original text instead of taking citations on faith.\n\nSearch goes far beyond full text. Sources are indexed with deep legal metadata, so you can filter by court, judge, counsel, party, outcome, cited legal basis, act type, issuing agency, or date — find the version of a law in force on a specific date, or jump straight to a known instrument by its official number or citation.\n\nFetch retrieves the text itself: a complete act or judgment, or one targeted provision — a single article or section — with the metadata to cite it.\n\nAnalyze turns the whole corpus into answers no single document holds: group decisions on a topic by year, cross-tabulate outcomes by court, chart a trend over time, or surface the legal bases courts cite most.\n\nTrace follows indexed relationships: which decisions apply a law, what a judgment cites, which national law implements an international instrument, and the legislative history behind a provision.\n\nCoverage varies by jurisdiction and source.",
+    "category": "PRODUCTIVITY"
+  },
+  "tools": {
+    "legalcode_discover": {
+      "annotations": {
+        "readOnlyHint": false,
+        "openWorldHint": false,
+        "destructiveHint": false,
+        "idempotentHint": true
+      },
+      "justifications": {
+        "read_only_justification": "Reads Legalcode coverage metadata but also updates private authentication, quota, rate-limit, and telemetry state. It cannot alter legal materials or user content.",
+        "open_world_justification": "Only reads Legalcode-controlled discovery metadata and does not publish content or modify external systems.",
+        "destructive_justification": "Does not delete, overwrite, revoke access, or perform irreversible actions."
+      }
+    },
+    "legalcode_search": {
+      "annotations": {
+        "readOnlyHint": false,
+        "openWorldHint": false,
+        "destructiveHint": false,
+        "idempotentHint": true
+      },
+      "justifications": {
+        "read_only_justification": "Searches indexed legal sources but also updates private quota, rate-limit, and telemetry state. It cannot alter legal materials or user content.",
+        "open_world_justification": "Does not publish, send, or modify content in public or third-party systems.",
+        "destructive_justification": "Does not delete, overwrite, revoke access, or perform irreversible actions."
+      }
+    },
+    "legalcode_fetch": {
+      "annotations": {
+        "readOnlyHint": false,
+        "openWorldHint": false,
+        "destructiveHint": false,
+        "idempotentHint": true
+      },
+      "justifications": {
+        "read_only_justification": "Retrieves an indexed source but also updates private quota, rate-limit, and telemetry state. It cannot alter the source or user content.",
+        "open_world_justification": "Does not publish content or modify the retrieved source, its publisher, or any third-party system.",
+        "destructive_justification": "Does not delete, overwrite, revoke access, or perform irreversible actions."
+      }
+    },
+    "legalcode_analyze": {
+      "annotations": {
+        "readOnlyHint": false,
+        "openWorldHint": false,
+        "destructiveHint": false,
+        "idempotentHint": true
+      },
+      "justifications": {
+        "read_only_justification": "Computes aggregates over indexed legal data but also updates private quota, rate-limit, and telemetry state. It cannot alter legal materials or user content.",
+        "open_world_justification": "Performs analysis within Legalcode and does not publish results or modify external systems.",
+        "destructive_justification": "Does not delete, overwrite, revoke access, or perform irreversible actions."
+      }
+    },
+    "legalcode_trace": {
+      "annotations": {
+        "readOnlyHint": false,
+        "openWorldHint": false,
+        "destructiveHint": false,
+        "idempotentHint": true
+      },
+      "justifications": {
+        "read_only_justification": "Reads indexed relationships but also updates private quota, rate-limit, and telemetry state. It cannot create or alter relationships, legal materials, or user content.",
+        "open_world_justification": "Does not create relationships, publish content, or modify public or third-party systems.",
+        "destructive_justification": "Does not delete, overwrite, revoke access, or perform irreversible actions."
+      }
+    }
+  },
+  "test_cases": [
+    {
+      "description": "Discover supported Icelandic legal-source coverage and ways to narrow research before searching.",
+      "user_prompt": "What Icelandic legal sources can Legalcode research, and how can I narrow a search?",
+      "file_attachment_urls": null,
+      "tools_triggered": "legalcode_discover",
+      "expected_output": "Explains the currently supported Icelandic source families and available ways to narrow research in ordinary language, without exposing raw schema keys or inventing unavailable options.",
+      "expected_output_url": null
+    },
+    {
+      "description": "Find the current version of a known Icelandic law by its exact identifier.",
+      "user_prompt": "Use Legalcode to find the current version of Icelandic Act no. 90/2018 on data protection. Give me its legal citation and official source.",
+      "file_attachment_urls": null,
+      "tools_triggered": "legalcode_search",
+      "expected_output": "Identifies the current indexed version of Act no. 90/2018 by title and legal citation, links to an official source, and offers an appropriate retrieval next step without displaying machine identifiers.",
+      "expected_output_url": null
+    },
+    {
+      "description": "Directly exercise Fetch against a stable law-family record handle.",
+      "user_prompt": "Use Legalcode to retrieve the first article from the record law/IS/IS|LAW|90/2018.",
+      "file_attachment_urls": null,
+      "tools_triggered": "legalcode_fetch",
+      "expected_output": "Returns the first article from the current version, identifies the law by title and legal citation, and links to an official source. It may briefly note current-version resolution without displaying the machine identifier.",
+      "expected_output_url": null
+    },
+    {
+      "description": "Aggregate a bounded legal research question by year.",
+      "user_prompt": "Using Legalcode, group Icelandic data-protection decisions by year.",
+      "file_attachment_urls": null,
+      "tools_triggered": "legalcode_analyze",
+      "expected_output": "Returns year-grouped aggregate counts for matching Icelandic decisions, explains the scope in ordinary language, and does not imply causation.",
+      "expected_output_url": null
+    },
+    {
+      "description": "Trace an indexed implementation relationship between EU and Icelandic law.",
+      "user_prompt": "Use Legalcode to trace which Icelandic law implements the GDPR, CELEX 32016R0679.",
+      "file_attachment_urls": null,
+      "tools_triggered": "legalcode_trace",
+      "expected_output": "Identifies Icelandic Act no. 90/2018 using its human-readable legal citation and an official source link, while clearly describing the result as an indexed implementation relationship.",
+      "expected_output_url": null
+    }
+  ],
+  "negative_test_cases": [
+    {
+      "description": "Do not trigger when the user asks to file a legal document with a court.",
+      "user_prompt": "File this pleading with the Icelandic courts for me.",
+      "file_attachment_urls": null,
+      "tools_triggered": null,
+      "expected_output": "The app should not be invoked because Legalcode researches legal sources but cannot file documents or act on the user's behalf.",
+      "expected_output_url": null
+    },
+    {
+      "description": "Do not trigger for legal drafting that explicitly excludes source research.",
+      "user_prompt": "Rewrite this limitation-of-liability clause without researching the law.",
+      "file_attachment_urls": null,
+      "tools_triggered": null,
+      "expected_output": "The app should not be invoked because the user asked for drafting help only and explicitly excluded legal source research.",
+      "expected_output_url": null
+    },
+    {
+      "description": "Do not trigger for an unrelated weather request.",
+      "user_prompt": "What will the weather be in Reykjavík tomorrow?",
+      "file_attachment_urls": null,
+      "tools_triggered": null,
+      "expected_output": "The app should not be invoked because weather information is outside Legalcode's legal research workflows.",
+      "expected_output_url": null
+    }
+  ]
+}

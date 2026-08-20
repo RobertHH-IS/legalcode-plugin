@@ -1,0 +1,50 @@
+name: OpenAI plugin submission conformance
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".agents/plugins/marketplace.json"
+      - ".github/workflows/openai-submission-conformance.yml"
+      - "chatgpt-app-submission.json"
+      - "docs/**"
+      - "plugins/legalcode-openai/**"
+      - "requirements-dev.txt"
+      - "scripts/validate_openai_submission.py"
+      - "tests/openai-skill-routing.json"
+  pull_request:
+    paths:
+      - ".agents/plugins/marketplace.json"
+      - ".github/workflows/openai-submission-conformance.yml"
+      - "chatgpt-app-submission.json"
+      - "docs/**"
+      - "plugins/legalcode-openai/**"
+      - "requirements-dev.txt"
+      - "scripts/validate_openai_submission.py"
+      - "tests/openai-skill-routing.json"
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: pip
+          cache-dependency-path: requirements-dev.txt
+
+      - name: Install validation dependencies
+        run: python -m pip install --disable-pip-version-check -r requirements-dev.txt
+
+      - name: Validate the OpenAI submission package
+        run: python scripts/validate_openai_submission.py

@@ -1,3 +1,3 @@
 # Python 3.11 or newer is required by the pinned skills-ref validator.
-jsonschema==4.25.1
+PyYAML==6.0.2
 skills-ref @ git+https://github.com/agentskills/agentskills.git@217be548739f21d6008915c29aefe320ea1a90af#subdirectory=skills-ref
