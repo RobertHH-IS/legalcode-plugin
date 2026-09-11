@@ -1,6 +1,6 @@
-# Legalcode OpenAI Plugin
+# Legalcode Plugins
 
-This repository contains the submission package for the Legalcode OpenAI plugin.
+This repository contains separate submission packages for Legalcode on OpenAI and Claude.
 
 Legalcode gives OpenAI products authenticated access to primary legal sources through the hosted
 MCP endpoint:
@@ -9,7 +9,18 @@ MCP endpoint:
 https://mcp.legalcode.md/mcp
 ```
 
-## Submission package
+## Claude plugin
+
+The Claude package is [`plugins/legalcode-claude`](plugins/legalcode-claude), with its marketplace
+catalog in [`.claude-plugin/marketplace.json`](.claude-plugin/marketplace.json). It includes the
+Legalcode research guide and hosted MCP connection. See [Claude submission details](docs/claude-submission.md).
+
+```sh
+claude plugin validate plugins/legalcode-claude --strict
+claude plugin validate .claude-plugin/marketplace.json --strict
+```
+
+## OpenAI submission package
 
 The uploadable package is [`plugins/legalcode-openai`](plugins/legalcode-openai). It contains:
 
