@@ -4,8 +4,8 @@
   "app_info": {
     "display_name": "Legalcode",
     "subtitle": "Primary-source legal research",
-    "description": "Search primary legal materials, retrieve source metadata and available text, analyze indexed cohorts, and trace verified relationships among laws, decisions and legislative history. Research patent publications through the dedicated Patents tool. Where current profiles support them, use structured parliamentary metadata to find documents, events and participation assignments. The included MCP guide explains how to combine all six research tools and preserve exact identities, versions and coverage limits. Coverage and text availability vary by jurisdiction and source.",
-    "category": "PRODUCTIVITY"
+    "description": "Research legislation, court decisions, legislative history and patents using primary sources and precise metadata. Find relevant sources, retrieve available text, compare exact versions, count indexed records and follow verified relationships. Where coverage supports it, research parliamentary documents, speeches, votes, events and historical roles. Results include source identities and links so you can verify the evidence. Coverage and text availability vary by jurisdiction and source.",
+    "category": "Education & Research"
   },
   "tools": {
     "legalcode_discover": {

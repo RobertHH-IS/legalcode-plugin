@@ -3,9 +3,9 @@
 ## Final listing
 
 - Name: Legalcode
-- Version: 1.2.0
+- Version: 1.2.1
 - Subtitle: Primary-source legal research
-- Category: Productivity
+- Category: Education & Research
 - Developer identity: verified Fordæmi ehf.
 - Plugin author: Fordæmi ehf.
 - Website: https://legalcode.md
@@ -21,7 +21,7 @@
 
 Description:
 
-> Search primary legal materials, retrieve source metadata and available text, analyze indexed cohorts, and trace verified relationships among laws, decisions and legislative history. Research patent publications through the dedicated Patents tool. Where current profiles support them, use structured parliamentary metadata to find documents, events and participation assignments. The included MCP guide explains how to combine all six research tools and preserve exact identities, versions and coverage limits. Coverage and text availability vary by jurisdiction and source.
+> Research legislation, court decisions, legislative history and patents using primary sources and precise metadata. Find relevant sources, retrieve available text, compare exact versions, count indexed records and follow verified relationships. Where coverage supports it, research parliamentary documents, speeches, votes, events and historical roles. Results include source identities and links so you can verify the evidence. Coverage and text availability vary by jurisdiction and source.
 
 Starter prompts:
 
@@ -31,7 +31,7 @@ Starter prompts:
 
 Release notes:
 
-> Version 1.2.0 updates the MCP guide for six tools, including dedicated patent search and retrieval, metadata-based parliamentary entries, exact versions, count semantics and availability limits. Adds customer support metadata and updated review scenarios. Hosted tool changes remain subject to MCP scan approval.
+> Version 1.2.1 clarifies the legal research purpose and updates the listing category to Education & Research. The six research tools and hosted MCP connection are unchanged.
 
 Submission assets:
 
@@ -120,9 +120,9 @@ Before clicking Submit:
 
 Publication and identity selection remain manual portal actions.
 
-## Version 1.2.0 package update
+## Version 1.2.1 package update
 
-Upload `dist/legalcode-openai-1.2.0.zip` to the existing Legalcode plugin. Its manifest name is the
+Upload `dist/legalcode-openai-1.2.1.zip` to the existing Legalcode plugin. Its manifest name is the
 assigned dashboard identity `app-6a5fc36564608191827f4e7716bdaba0`; its display name remains Legalcode.
 The ZIP preserves the MCP endpoint and imports updated listing metadata, one guide skill, five positive
 and three negative review cases. Customer support metadata is included. Existing country targeting

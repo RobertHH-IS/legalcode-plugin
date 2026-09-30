@@ -334,7 +334,7 @@ def validate_local_marketplace(failures: list[str]) -> None:
                         "installation": "AVAILABLE",
                         "authentication": "ON_INSTALL",
                     },
-                    "category": "Productivity",
+                    "category": "Education & Research",
                 }
             ],
         },
