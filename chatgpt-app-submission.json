@@ -4,7 +4,7 @@
   "app_info": {
     "display_name": "Legalcode",
     "subtitle": "Primary-source legal research",
-    "description": "Legal research grounded in primary sources. Legalcode gives ChatGPT direct access to statutes, case law, regulatory guidance, agreements, legislative history, and patents across more than 40 jurisdictions — tens of millions of indexed documents from official publishers, court databases, and regulatory portals — with human-readable citations and links to official materials, so you can verify conclusions against the original text instead of taking citations on faith.\n\nSearch goes far beyond full text. Sources are indexed with deep legal metadata, so you can filter by court, judge, counsel, party, outcome, cited legal basis, act type, issuing agency, or date — find the version of a law in force on a specific date, or jump straight to a known instrument by its official number or citation.\n\nFetch retrieves the text itself: a complete act or judgment, or one targeted provision — a single article or section — with the metadata to cite it.\n\nAnalyze turns the whole corpus into answers no single document holds: group decisions on a topic by year, cross-tabulate outcomes by court, chart a trend over time, or surface the legal bases courts cite most.\n\nTrace follows indexed relationships: which decisions apply a law, what a judgment cites, which national law implements an international instrument, and the legislative history behind a provision.\n\nLegalcode receives only your research queries — processed, never stored. Your documents stay in ChatGPT. Coverage varies by jurisdiction and source.",
+    "description": "Search primary legal materials, retrieve source metadata and available text, analyze indexed cohorts, and trace verified relationships among laws, decisions and legislative history. Research patent publications through the dedicated Patents tool. Where current profiles support them, use structured parliamentary metadata to find documents, events and participation assignments. The included MCP guide explains how to combine all six research tools and preserve exact identities, versions and coverage limits. Coverage and text availability vary by jurisdiction and source.",
     "category": "PRODUCTIVITY"
   },
   "tools": {
@@ -17,7 +17,7 @@
       },
       "justifications": {
         "read_only_justification": "Only retrieves Legalcode coverage and capability metadata without creating, updating, or deleting legal materials, relationships, or user content.",
-        "open_world_justification": "Only reads Legalcode-controlled discovery metadata and does not publish content or modify external systems.",
+        "open_world_justification": "Reads the bounded Legalcode discovery catalog; it does not search the public web or contact source publishers.",
         "destructive_justification": "Does not delete, overwrite, revoke access, or perform irreversible actions."
       }
     },
@@ -30,7 +30,7 @@
       },
       "justifications": {
         "read_only_justification": "Only retrieves matching legal-source records without creating, updating, or deleting legal materials, relationships, or user content.",
-        "open_world_justification": "Does not publish, send, or modify content in public or third-party systems.",
+        "open_world_justification": "Queries the bounded Legalcode indexed corpus. Patent provider requests are handled only by the separate Patents tool.",
         "destructive_justification": "Does not delete, overwrite, revoke access, or perform irreversible actions."
       }
     },
@@ -43,7 +43,7 @@
       },
       "justifications": {
         "read_only_justification": "Only retrieves metadata or text for an identified legal source without altering that source, related records, or user content.",
-        "open_world_justification": "Does not publish content or modify the retrieved source, its publisher, or any third-party system.",
+        "open_world_justification": "Retrieves stored source metadata and text from the bounded Legalcode corpus. Patent publications use the separate Patents tool.",
         "destructive_justification": "Does not delete, overwrite, revoke access, or perform irreversible actions."
       }
     },
@@ -56,7 +56,7 @@
       },
       "justifications": {
         "read_only_justification": "Only computes aggregates over indexed legal data without creating, updating, or deleting legal materials, relationships, or user content.",
-        "open_world_justification": "Performs analysis within Legalcode and does not publish results or modify external systems.",
+        "open_world_justification": "Computes aggregates over the bounded Legalcode indexed corpus; it does not query the public web or contact source publishers.",
         "destructive_justification": "Does not delete, overwrite, revoke access, or perform irreversible actions."
       }
     },
@@ -69,50 +69,63 @@
       },
       "justifications": {
         "read_only_justification": "Only retrieves indexed legal relationships without creating, updating, or deleting relationships, legal materials, or user content.",
-        "open_world_justification": "Does not create relationships, publish content, or modify public or third-party systems.",
+        "open_world_justification": "Reads persisted relationships within the bounded Legalcode corpus; it does not traverse the public web.",
         "destructive_justification": "Does not delete, overwrite, revoke access, or perform irreversible actions."
+      }
+    },
+    "legalcode_patents": {
+      "annotations": {
+        "readOnlyHint": true,
+        "openWorldHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true
+      },
+      "justifications": {
+        "read_only_justification": "Searches patent publications and retrieves metadata or available source text without changing patent records or submitting external actions.",
+        "open_world_justification": "Both search and fetch read the external EPO service; the tool accesses external patent publications at invocation time.",
+        "destructive_justification": "Does not delete, overwrite, revoke access, submit filings or perform irreversible actions."
       }
     }
   },
   "test_cases": [
     {
-      "description": "Discover supported Icelandic legal-source coverage and ways to narrow research before searching.",
-      "user_prompt": "What Icelandic legal sources can Legalcode research, and how can I narrow a search?",
+      "description": "Compare current legal-source coverage across three supported jurisdictions before researching.",
+      "user_prompt": "Compare the legal source types Legalcode currently covers in Iceland, the European Union, and the United States.",
       "file_attachment_urls": null,
       "tools_triggered": "legalcode_discover",
-      "expected_output": "Explains the currently supported Icelandic source families and available ways to narrow research in ordinary language, without exposing raw schema keys or inventing unavailable options.",
+      "expected_output": "Uses current discovery for each jurisdiction and summarizes the available legislation, court decisions, agency materials, guidance, agreements, and preparatory materials in ordinary language. It distinguishes genuine coverage gaps and does not display internal source codes or schema keys.",
       "expected_output_url": null
     },
     {
-      "description": "Find the current version of a known Icelandic law by its exact identifier.",
-      "user_prompt": "Use Legalcode to find the current version of Icelandic Act no. 90/2018 on data protection. Give me its legal citation and official source.",
+      "description": "Search an exact European patent publication and verify available claims text.",
+      "user_prompt": "Find European patent EP4811984A1. Verify its publication identity and summarize its published claims with the source link.",
       "file_attachment_urls": null,
-      "tools_triggered": "legalcode_search",
-      "expected_output": "Identifies the current indexed version of Act no. 90/2018 by title and legal citation, links to an official source, and offers an appropriate retrieval next step without displaying machine identifiers.",
+      "tools_triggered": "legalcode_patents",
+      "expected_output": "Uses the dedicated Patents tool to search the exact publication, then retrieve metadata and available text for that same publication. Reports its identifier including the kind code, source link, and a summary supported by retrieved claims. If the provider or text is unavailable, states the limitation without inventing claims.",
       "expected_output_url": null
     },
     {
-      "description": "Directly exercise Fetch against a stable law-family record handle.",
-      "user_prompt": "Use Legalcode to retrieve the first article from the record law/IS/IS|LAW|90/2018.",
+      "description": "Find and retrieve a targeted provision from a known European Union instrument.",
+      "user_prompt": "Find GDPR (CELEX 32016R0679), retrieve Article 22, and explain when solely automated decisions are permitted, with the official source.",
       "file_attachment_urls": null,
-      "tools_triggered": "legalcode_fetch",
-      "expected_output": "Returns the first article from the current version, identifies the law by title and legal citation, and links to an official source. It may briefly note current-version resolution without displaying the machine identifier.",
+      "tools_triggered": "legalcode_discover, legalcode_search, legalcode_fetch",
+      "expected_output": "Discovers the EU law profile, resolves the GDPR by its public legal identifier, and retrieves Article 22 from the returned current record. The answer explains the contract, legal-authorization, and explicit-consent exceptions and the required safeguards, cites Article 22, links to EUR-Lex, and does not display the internal retrieval handle.",
       "expected_output_url": null
     },
     {
-      "description": "Aggregate a bounded legal research question by year.",
-      "user_prompt": "Using Legalcode, group Icelandic data-protection decisions by year.",
+      "description": "Analyze a precisely bounded regulatory-decision cohort and verify records from the same cohort.",
+      "user_prompt": "Show annual counts of Icelandic Data Protection Authority decisions from 2018 through 2025, then verify the two newest decisions in that cohort.",
       "file_attachment_urls": null,
-      "tools_triggered": "legalcode_analyze",
-      "expected_output": "Returns year-grouped aggregate counts for matching Icelandic decisions, explains the scope in ordinary language, and does not imply causation.",
+      "tools_triggered": "legalcode_discover, legalcode_analyze, legalcode_search, legalcode_fetch",
+      "expected_output": "Discovers the exact authority scope, returns one annual count for each year from 2018 through 2025, and labels the figures as indexed-corpus counts rather than causal findings. It then searches the identical cohort and retrieves the two newest decisions, identifying each by title or decision number, date, issuing body, and official link without displaying internal fields or record handles.",
       "expected_output_url": null
     },
     {
-      "description": "Trace an indexed implementation relationship between EU and Icelandic law.",
-      "user_prompt": "Use Legalcode to trace which Icelandic law implements the GDPR, CELEX 32016R0679.",
+      "description": "Follow an enacted Icelandic law into its original legislative history and supporting documents.",
+      "user_prompt": "Find the original bill behind Icelandic Act no. 90/2018, list five submitted opinions, and briefly summarize the committee report with official links.",
       "file_attachment_urls": null,
-      "tools_triggered": "legalcode_trace",
-      "expected_output": "Identifies Icelandic Act no. 90/2018 using its human-readable legal citation and an official source link, while clearly describing the result as an indexed implementation relationship.",
+      "tools_triggered": "legalcode_discover, legalcode_search, legalcode_trace, legalcode_fetch",
+      "expected_output": "Resolves Act no. 90/2018, traces it to matter 622 of the 148th parliamentary session, and distinguishes that original enactment history from later amending matters. It lists five named submitted opinions with official links, retrieves committee report no. 1281, and gives a source-grounded summary without displaying internal flow or record handles.",
       "expected_output_url": null
     }
   ],
@@ -126,19 +139,19 @@
       "expected_output_url": null
     },
     {
-      "description": "Do not trigger for legal drafting that explicitly excludes source research.",
-      "user_prompt": "Rewrite this limitation-of-liability clause without researching the law.",
+      "description": "Do not trigger for a self-contained contract edit that requires no source research.",
+      "user_prompt": "Rewrite for clarity without changing the meaning: 'Neither party is liable for indirect, incidental, or consequential damages.'",
       "file_attachment_urls": null,
       "tools_triggered": null,
-      "expected_output": "The app should not be invoked because the user asked for drafting help only and explicitly excluded legal source research.",
+      "expected_output": "The app should not be invoked because the requested edit is fully contained in the supplied text and does not ask for legal-source research.",
       "expected_output_url": null
     },
     {
-      "description": "Do not trigger for an unrelated weather request.",
-      "user_prompt": "What will the weather be in Reykjavík tomorrow?",
+      "description": "Do not trigger for legal correspondence drafting that requires no source research.",
+      "user_prompt": "Draft a polite email to opposing counsel asking for a one-week extension.",
       "file_attachment_urls": null,
       "tools_triggered": null,
-      "expected_output": "The app should not be invoked because weather information is outside Legalcode's legal research workflows.",
+      "expected_output": "The app should not be invoked because drafting correspondence does not require searching, retrieving, analyzing, or tracing legal sources.",
       "expected_output_url": null
     }
   ]

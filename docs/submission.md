@@ -3,7 +3,7 @@
 ## Final listing
 
 - Name: Legalcode
-- Version: 1.1.3
+- Version: 1.2.0
 - Subtitle: Primary-source legal research
 - Category: Productivity
 - Developer identity: verified Fordæmi ehf.
@@ -21,27 +21,17 @@
 
 Description:
 
-> Legal research grounded in primary sources. Legalcode gives ChatGPT direct access to statutes, case law, regulatory guidance, agreements, legislative history, and patents across more than 40 jurisdictions — tens of millions of indexed documents from official publishers, court databases, and regulatory portals — with human-readable citations and links to official materials, so you can verify conclusions against the original text instead of taking citations on faith.
->
-> Search goes far beyond full text. Sources are indexed with deep legal metadata, so you can filter by court, judge, counsel, party, outcome, cited legal basis, act type, issuing agency, or date — find the version of a law in force on a specific date, or jump straight to a known instrument by its official number or citation.
->
-> Fetch retrieves the text itself: a complete act or judgment, or one targeted provision — a single article or section — with the metadata to cite it.
->
-> Analyze turns the whole corpus into answers no single document holds: group decisions on a topic by year, cross-tabulate outcomes by court, chart a trend over time, or surface the legal bases courts cite most.
->
-> Trace follows indexed relationships: which decisions apply a law, what a judgment cites, which national law implements an international instrument, and the legislative history behind a provision.
->
-> Legalcode receives only your research queries — processed, never stored. Your documents stay in ChatGPT. Coverage varies by jurisdiction and source.
+> Search primary legal materials, retrieve source metadata and available text, analyze indexed cohorts, and trace verified relationships among laws, decisions and legislative history. Research patent publications through the dedicated Patents tool. Where current profiles support them, use structured parliamentary metadata to find documents, events and participation assignments. The included MCP guide explains how to combine all six research tools and preserve exact identities, versions and coverage limits. Coverage and text availability vary by jurisdiction and source.
 
 Starter prompts:
 
 1. Research an Icelandic legal issue using current legislation and case law.
 2. Find EU legislation and decisions, then trace national implementation measures.
-3. Show which Icelandic legal sources are available and what I can ask about them.
+3. Find European patent EP4811984A1 and verify its published claims.
 
 Release notes:
 
-> Initial public submission of Legalcode. Includes an authenticated legal research MCP server with five tools and one provider-neutral MCP guide skill. The plugin performs no purchases, filings, communications, or other external actions.
+> Version 1.2.0 updates the MCP guide for six tools, including dedicated patent search and retrieval, metadata-based parliamentary entries, exact versions, count semantics and availability limits. Adds customer support metadata and updated review scenarios. Hosted tool changes remain subject to MCP scan approval.
 
 Submission assets:
 
@@ -51,8 +41,7 @@ Submission assets:
 
 `chatgpt-app-submission.json` is hand-maintained at the repository root; no script generates it.
 Use it to keep the listing metadata, tool annotations, five positive cases, and three negative cases
-consistent while completing the OpenAI submission portal. The portal fields, not this file, are the
-submitted record.
+consistent while completing the OpenAI submission portal. The manifest imports review cases from the package. The portal retains reviewer access and the demo video separately; private credentials are never included in this worksheet or ZIP.
 
 ## MCP contract
 
@@ -61,13 +50,14 @@ The submission advertises exactly:
 1. legalcode_discover
 2. legalcode_search
 3. legalcode_fetch
-4. legalcode_analyze
-5. legalcode_trace
+4. legalcode_patents
+5. legalcode_analyze
+6. legalcode_trace
 
-Every tool declares OAuth with legalcode.public.read, legalcode.laws.read, and legalcode.cases.read. The five research tools only retrieve or compute legal information and cannot change legal materials, relationships, user content, or public or external systems, so the annotations are:
+Every tool declares OAuth with legalcode.public.read, legalcode.laws.read, and legalcode.cases.read. The six research tools only retrieve or compute legal information and cannot change legal materials, relationships, user content, or public or external systems, so the annotations are:
 
 - readOnlyHint: true
-- openWorldHint: false
+- openWorldHint: false for corpus tools; true for Patents because it reads the external EPO service
 - destructiveHint: false
 - idempotentHint: true
 
@@ -85,28 +75,27 @@ Before submission, create a completely fresh ChatGPT Developer Mode connection a
 
 ### Positive
 
-1. Discover Icelandic sources and ways to narrow research with legalcode_discover.
-2. Search for Icelandic Act No. 90/2018 and return its legal citation and official source with legalcode_search.
-3. Directly exercise legalcode_fetch against the stable law-family record handle in the worksheet.
-4. Analyze Icelandic data-protection decisions by year, without implying causation.
-5. Trace GDPR CELEX 32016R0679 to an Icelandic implementing law and identify it with a human-readable citation and official source.
+1. Discover and compare current source coverage for Iceland, the European Union, and the United States.
+2. Search European patent EP4811984A1, retrieve that same publication, and verify its available claims with the source link.
+3. Resolve GDPR by CELEX, then fetch and explain Article 22 with an official EUR-Lex link.
+4. Analyze Icelandic Data Protection Authority decisions from 2018 through 2025, then search and fetch the two newest records from the identical cohort.
+5. Resolve Icelandic Act No. 90/2018, trace its original legislative matter, enumerate submitted opinions, and fetch the committee report.
 
-The direct Fetch case is a standalone technical evaluation because Fetch requires a record handle.
-Keep that handle inside the worksheet and tool call; the recorded conversational demo must chain from
-Search to Fetch without typing or displaying it.
+Every prompt is reader-facing. Search or Trace supplies Fetch with the opaque record handle inside the
+tool workflow; reviewers are never asked to construct or type one.
 
 ### Negative
 
 1. Do not invoke Legalcode to file a pleading.
-2. Do not invoke Legalcode to rewrite a contract clause when the user excludes legal research.
-3. Do not invoke Legalcode for weather.
+2. Do not invoke Legalcode for a self-contained contract edit that requires no source research.
+3. Do not invoke Legalcode to draft routine legal correspondence that requires no source research.
 
 ## Demo recording
 
 Record a reviewer-accessible demonstration of:
 
 - account linking;
-- all five MCP tools;
+- all six MCP tools;
 - the MCP tool-guide explaining supported capabilities;
 - one uploaded-document workflow;
 - citation verification;
@@ -130,3 +119,11 @@ Before clicking Submit:
 7. Submit only after Scan Tools is clean.
 
 Publication and identity selection remain manual portal actions.
+
+## Version 1.2.0 package update
+
+Upload `dist/legalcode-openai-1.2.0.zip` to the existing Legalcode plugin. The ZIP preserves the
+manifest name and MCP endpoint and imports updated listing metadata, one guide skill, five positive
+and three negative review cases. Customer support metadata is included. Existing country targeting
+and the saved demo URL are preserved by omission. This package does not bypass held MCP tool
+updates: inspect their findings, rescan or appeal through the separate MCP review panel.

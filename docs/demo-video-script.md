@@ -1,9 +1,9 @@
 # Legalcode demo video script
 
-Target length: about 3 minutes 45 seconds on web, plus two short mobile segments.
-The prompts below follow the submitted test cases. The standalone technical
-Fetch fixture is adapted into a natural conversational handoff so the demo
-does not expose a machine-only record handle.
+Target length: about 4 minutes 15 seconds on web, plus two short mobile segments.
+The base scene timestamps exclude the patent insert; allow provider response time.
+The prompts below follow the submitted test cases and keep all record handles
+inside tool calls.
 
 ## Before recording
 
@@ -15,8 +15,8 @@ does not expose a machine-only record handle.
 - A short sample document ready to upload: a one-page memo or contract that
   cites Icelandic Act no. 90/2018 (ideally one current citation and one
   outdated or wrong one, so the verification step has something to find).
-- The official published text of Act no. 90/2018 open in a background tab
-  (althingi.is) for the citation-verification side-by-side.
+- The official published text of GDPR Article 22 open in a background tab
+  (EUR-Lex) for the citation-verification side-by-side.
 - Never navigate near pricing, checkout, or upgrade screens at any point.
 - After each tool call, show its name briefly. Keep machine-only arguments
   collapsed and focus the frame on the human-readable answer.
@@ -27,7 +27,7 @@ does not expose a machine-only record handle.
 
 SHOW: ChatGPT open, Legalcode visible in the apps/connectors list, not linked.
 SAY: "This is Legalcode: legal research grounded in primary sources. It gives
-ChatGPT five research tools over statutes, case law, guidance, agreements,
+ChatGPT six research tools over statutes, case law, guidance, agreements,
 legislative history, and patents. I'll link an account, run every tool, verify
 a citation against the original source, and show what Legalcode refuses to do."
 
@@ -43,33 +43,41 @@ connection active."
 ### Scene 3 — Capability guide (0:45–1:05)
 
 TYPE: What can Legalcode do, and what are its limits?
-SHOW: The response describing the five tools and that Legalcode only reads
+SHOW: The response describing the six tools and that Legalcode only reads
 legal sources — it cannot file, send, purchase, or modify anything.
 SAY: "The built-in tool guide explains the supported capabilities: discover,
-search, fetch, analyze, and trace — research only, no external actions."
+search, fetch, patents, analyze, and trace — research only, no external actions."
 
 ### Scene 4 — Discover (1:05–1:25)
 
-TYPE: What Icelandic legal sources can Legalcode research, and how can I narrow a search?
-SHOW: Show the `legalcode_discover` call, then the answer describing source
-families and search options in ordinary language.
-SAY: "Discover reports real coverage and the available ways to narrow the
-research, so the model never has to guess what the corpus supports."
+TYPE: Compare the legal source types Legalcode currently covers in Iceland, the European Union, and the United States.
+SHOW: Show the `legalcode_discover` calls, then the answer comparing source
+families by jurisdiction in ordinary language.
+SAY: "Discover reports the current shape of each corpus before research begins,
+so the model does not guess what a jurisdiction supports."
 
 ### Scene 5 — Search (1:25–1:45)
 
-TYPE: Use Legalcode to find the current version of Icelandic Act no. 90/2018 on data protection. Give me its legal citation and official source.
-SHOW: Show the `legalcode_search` call. Highlight the law's title, legal
-citation, and official link in the answer.
-SAY: "Search resolves the exact instrument and presents the current version
-with a legal citation and official source that a reader can verify."
+TYPE: Find GDPR (CELEX 32016R0679) and give its legal citation and official source.
+SHOW: Show the `legalcode_search` call, exact instrument and official link. Reuse
+that returned record in Scene 6.
+SAY: "Search resolves an exact public identifier and returns a source we can verify."
+
+### Scene 5b — Patents (separate 20–30 second insert)
+
+TYPE: Find European patent EP4811984A1. Verify its publication identity and summarize its published claims with the source link.
+SHOW: Both actions of `legalcode_patents`: exact Search and retrieval of the same
+publication's available claims. Keep the publication identifier and kind code visible.
+SAY: "Patents has a dedicated tool for live publication search and retrieval. It reads
+the external EPO service. If source text is unavailable, the answer reports that limit."
+
 
 ### Scene 6 — Fetch and citation verification (1:45–2:15)
 
-TYPE: Now retrieve the first article from that law.
+TYPE: Find GDPR (CELEX 32016R0679), retrieve Article 22, and explain when solely automated decisions are permitted, with the official source.
 SHOW: Show the `legalcode_fetch` call label while keeping its machine-only
-arguments collapsed. Highlight the returned first-article excerpt, legal
-citation, and official link. Then switch to the althingi.is tab and show the
+arguments collapsed. Highlight the returned Article 22 excerpt, citation, and
+official link. Then switch to the EUR-Lex tab and show the
 same text side by side for a few seconds.
 SAY: "Fetch retrieves one targeted provision with the metadata to cite it.
 The answer gives me the legal citation and official source, so I can verify
@@ -78,20 +86,19 @@ conclusions you can check against the primary source."
 
 ### Scene 7 — Analyze (2:15–2:40)
 
-TYPE: Using Legalcode, group Icelandic data-protection decisions by year.
-SHOW: Expand the `legalcode_analyze` call and the year-by-year aggregate
-table in the answer.
-SAY: "Analyze aggregates across the corpus — here, data-protection decisions
-grouped by year. It also supports cross-tabulations and trends, for example
-outcomes by court over time."
+TYPE: Show annual counts of Icelandic Data Protection Authority decisions from 2018 through 2025, then verify the two newest decisions in that cohort.
+SHOW: Expand the `legalcode_analyze` call and the eight annual buckets, then
+show the matching Search and Fetch calls for the two newest decisions.
+SAY: "Analyze measures a precisely defined cohort. Search and Fetch then verify
+real decisions from the same scope rather than substituting a looser query."
 
 ### Scene 8 — Trace (2:40–3:00)
 
-TYPE: Use Legalcode to trace which Icelandic law implements the GDPR, CELEX 32016R0679.
-SHOW: Expand the `legalcode_trace` call and the implementation relationship
-pointing to Act no. 90/2018.
-SAY: "Trace follows indexed relationships between sources — implementations,
-citations, and legislative history."
+TYPE: Find the original bill behind Icelandic Act no. 90/2018, list five submitted opinions, and briefly summarize the committee report with official links.
+SHOW: Expand the `legalcode_trace` call, matter 622 of the 148th parliamentary
+session, five submitted opinions, and committee report no. 1281.
+SAY: "Trace follows the enacted law into its original legislative history;
+Search enumerates the attached documents and Fetch verifies the report text."
 
 ### Scene 9 — Uploaded document workflow (3:00–3:25)
 
@@ -113,7 +120,7 @@ invoked — it cannot file, send, or act on a user's behalf."
 ### Scene 11 — Wrap (3:40–3:50)
 
 SHOW: Scroll briefly back through the conversation.
-SAY: "Five tools, primary sources, verifiable citations, and hard limits.
+SAY: "Six tools, primary sources, verifiable citations, and hard limits.
 That's Legalcode."
 
 ## Mobile segments (iOS and Android)
@@ -130,7 +137,7 @@ here's the identical search returning the same verifiable citation."
 
 ## After recording
 
-- Confirm every requirement is on screen: linking, all five tools by name,
+- Confirm every requirement is on screen: linking, all six tools by name,
   capability guide, uploaded document, citation verification, refused action.
 - Confirm nothing showed checkout, upgrade prompts, the OTP allowlist, or any
   private portal data.

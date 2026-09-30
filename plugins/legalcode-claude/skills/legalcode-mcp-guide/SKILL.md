@@ -1,7 +1,7 @@
 ---
 name: legalcode-mcp-guide
 description: >
-  Coordinate Legalcode's Discover, Search, Fetch, Analyze, and Trace tools for
+  Coordinate Legalcode's Discover, Search, Fetch, Patents, Analyze, and Trace tools for
   primary-source research. Use for capability questions, current source
   discovery, multi-tool research, aggregate analysis, relationship tracing,
   verified source text, or recovery from a rejected Legalcode call. Not for
@@ -21,6 +21,7 @@ handoffs that individual tool descriptions cannot express.
 | `legalcode_discover` | Learn the current shape of a jurisdiction and source family | searchable and filterable fields, facets, source codes, sorts, analytics readiness, and relationship coverage |
 | `legalcode_search` | Find and rank candidate records | `sourceRef`, citation metadata, official URLs, snippets, and sometimes `downloadUrl` |
 | `legalcode_fetch` | Verify one known record or provision | source metadata and the text needed to support a conclusion |
+| `legalcode_patents` | Search live patent publications or retrieve one exact publication | patent metadata, publication identifiers, source links, and available text |
 | `legalcode_analyze` | Count or group a defined indexed cohort | buckets, measures, and document handles when that profile permits them |
 | `legalcode_trace` | Follow a persisted legal relationship | related-record handles and, for legislative history, flow handles |
 
@@ -30,7 +31,7 @@ underlying source.
 
 ## Discover the shape first
 
-For each new jurisdiction and source family in a research task, call Discover `source_profile`
+For each new indexed jurisdiction and source family in a research task, call Discover `source_profile`
 before the first Search, Analyze, or Trace. It establishes what the current corpus actually
 supports. Use `facet_values` when an exact stored filter value is needed. Never guess a
 `sourceCode`, field, facet value, analytics dimension, measure, or relationship capability.
@@ -38,6 +39,11 @@ supports. Use `facet_values` when an exact stored filter value is needed. Never 
 Reuse a current profile already present in the conversation; do not repeat Discover for every call
 within the same scope. Fetching a returned `sourceRef` and continuing a cursor-paginated call do not
 need another discovery step.
+
+Patents use their own tool schema. They are not a Discovery source family and are not accepted by
+generic Search or Fetch. Call `legalcode_patents` directly for patent research.
+If that tool or a described parameter is absent from the connected schema, report the capability
+as unavailable in this connection. Package instructions cannot enable an unapproved tool update.
 
 ## Search from most specific to least specific
 
@@ -68,6 +74,53 @@ silently dropping it and broadening the question.
   keep the source, mode, and cursor scope unchanged.
 - **Cross-jurisdiction work:** repeat Discover and research separately for each jurisdiction, then
   normalize the comparison in the answer.
+
+## Patent publications
+
+Use `legalcode_patents` with `action:"search"` and an explicit `jurisdiction`. Use `patentId`
+for an exact publication, including its kind code, or supported applicant, inventor, office, and
+publication-date constraints for a defined search. Each page returns at most 20 results; only the
+first 2,000 provider results can be paged. Continue using the returned cursor and preserve every
+search constraint. An unsupported jurisdiction needs an explicit supported office; never broaden
+it silently to all offices.
+
+Copy the returned patent `sourceRef` exactly into the same tool with `action:"fetch"`.
+Metadata, excerpt, and full modes describe the requested retrieval; follow text continuations
+without changing the publication or mode. Search-only inputs do not belong in a Fetch request.
+Available metadata or a publisher link does not prove that description or claims text was
+retrieved. Report body availability, provider failures, and incomplete text explicitly. The tool
+reads the external EPO service, so results and availability may vary between requests.
+
+## Parliamentary entries and exact versions
+
+Alþingi bill proceedings use `pre_law`; other parliamentary records use `public_record`.
+Discover the exact source and readiness before choosing fields. Use explicit session, matter,
+document, person, role, stage, outcome, subject, and date filters only when the profile advertises
+them. Generic query text never adds those constraints.
+
+Where supported, Search `resultLevel:"event"` or `"participant"` returns an independently
+fetchable entry and its parent reference. A participant entry represents a participation or role
+assignment, which may be a speaker, voter, or dated office or membership assignment. It is not
+necessarily a distinct person. Keep conditions intended for one assignment or event together.
+For historical roles, use the supported temporal operators; uncertain dates do not establish
+definite membership on a date.
+
+Fetch parent context through `publicRecordContext` with kind `participants`, `events`, or
+`relations`. Follow the context cursor separately from body-text pagination. Preserve exact
+document numbers, manifestation or revision identity, transcript status, and proposal versus
+adopted-document identity. Count records, documents, events, assignments, ballots, and people
+only with the measures and definitions advertised by the current analytics profile. Native ballot
+actions remain distinct, and overlapping groups need not add to a corpus total.
+
+For a last-three or last-four amendment request, establish the cutoff, qualifying amendment
+relationships, and exact versions. Adoption, publication, and commencement are different dates.
+Fetch the amendment evidence and relevant versions; latest consolidated text alone cannot
+establish the requested changes. If the indexed chain or a document body is incomplete, state
+which required evidence was not retrieved rather than asserting completeness.
+
+See [validated call examples](references/tool-examples.json) for argument shapes. Replace example
+handles with values returned by the connected tools, and check readiness before executing an
+analytics example.
 
 ## Trace starting points
 

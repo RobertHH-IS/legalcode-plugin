@@ -45,3 +45,9 @@ claude plugin validate .claude-plugin/marketplace.json
 ```
 
 The OpenAI submission files are separate from this Claude package. Submission and acceptance must be confirmed in the authenticated portal; repository validation alone does not establish either.
+
+## Version 1.2.0 update
+
+The Claude guide and call examples now match the OpenAI package and all six MCP tools.
+Patents uses the dedicated live EPO tool; parliamentary workflows preserve exact entries,
+versions, temporal bounds and count semantics. The hosted endpoint and authentication are unchanged.

@@ -1,36 +1,33 @@
 # Legalcode for OpenAI
 
-Legalcode provides authenticated primary-source legal research through the universal hosted MCP endpoint:
+Version 1.2.0 provides primary-source research through the hosted MCP connection
+https://mcp.legalcode.md/mcp and one included skill, `legalcode-mcp-guide`.
 
-https://mcp.legalcode.md/mcp
+The six tools are Discover, Search, Fetch, Patents, Analyze and Trace. Generic source discovery,
+search, retrieval, analysis and relationship tracing operate over the Legalcode corpus. Patents
+searches the external EPO service and retrieves exact patent publications and available text.
+The guide covers structured parliamentary metadata, event and participation entries, document
+versions, pagination, counting units and evidence limits. Coverage varies by source and jurisdiction.
 
-This is the complete OpenAI submission bundle. It contains one provider-neutral skill,
-`legalcode-mcp-guide`, which explains when and how to combine Legalcode's five MCP tools.
-Specialized legal workflow skills are intentionally distributed separately and are not part of
-the plugin submission.
+## Package contents
 
-The bundle contains no command-line program, local server, hook, script, app manifest, or custom
-UI. It bundles the hosted MCP connection in `.mcp.json`; the OpenAI submission portal also receives
-the same endpoint through its **With MCP** submission flow.
+The package includes the existing Codex-compatible manifest, hosted MCP configuration, brand
+assets, license and notices, and the MCP guide. It contains no executable program, local server,
+hook or custom interface. Authentication is managed by the client and hosted service.
 
-## Included skill
-
-- `legalcode-mcp-guide`
-
-## MCP capabilities
-
-The canonical tool surface is legalcode_discover, legalcode_search, legalcode_fetch, legalcode_analyze, and legalcode_trace. The tools only retrieve or compute legal information. They cannot alter, publish, send, file, purchase, or delete legal materials, relationships, user content, or public or external systems.
-
-Coverage varies by jurisdiction and source. Important conclusions should be checked against the returned legal citations, official links, and underlying primary materials.
-
-## Submission metadata
+## Listing
 
 - Name: Legalcode
-- Version: 1.1.3
+- Version: 1.2.0
 - Developer: Fordæmi ehf.
-- Category: Productivity
 - Website: https://legalcode.md
 - Support: https://legalcode.md/contact
 - Privacy: https://legalcode.md/privacy
 - Terms: https://legalcode.md/terms
 - Repository: https://github.com/RobertHH-IS/legalcode-plugin
+
+The manifest includes five positive and three negative review scenarios. These describe expected
+behavior; package validation does not establish that every scenario has passed a fresh hosted
+connector run. Reviewer credentials and a demonstration video remain in the private submission
+portal. Upload to the existing Legalcode plugin to create a new draft. Publication and approval of
+held tool definitions remain separate from building or uploading this archive.

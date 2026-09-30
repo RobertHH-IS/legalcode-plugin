@@ -48,3 +48,16 @@ uv run --python 3.13 --with-requirements requirements-dev.txt \
 
 The validator checks the exact one-skill inventory, MCP dependency metadata, package boundaries,
 manifest assets, routing cases, and submission worksheet.
+
+Build the upload archive and validate its extracted contents:
+
+```bash
+uv run --python 3.13 --with-requirements requirements-dev.txt \
+  python scripts/build_openai_package.py
+```
+
+The archive, checksum and validation report are written under `dist/`. Upload the archive to the
+existing Legalcode plugin. Hosted MCP tool approval is handled separately from package uploads.
+The GitHub Actions conformance workflow builds the same package and saves it as the
+`legalcode-openai-upload` artifact. OpenAI and Claude packages share the same guide and examples;
+validation rejects version, connection or guide drift between them.

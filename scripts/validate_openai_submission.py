@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import argparse
 import json
 import re
 import shutil
@@ -22,6 +23,7 @@ TOOLS = {
     "legalcode_discover",
     "legalcode_search",
     "legalcode_fetch",
+    "legalcode_patents",
     "legalcode_analyze",
     "legalcode_trace",
 }
@@ -47,6 +49,7 @@ EXPECTED_PACKAGE_FILES = {
     "assets/legalcode-directory-512.png",
     f"skills/{SKILL_NAME}/SKILL.md",
     f"skills/{SKILL_NAME}/agents/openai.yaml",
+    f"skills/{SKILL_NAME}/references/tool-examples.json",
 }
 ROUTING_SEQUENCES = {
     "activate_source_coverage": ["legalcode_discover"],
@@ -75,6 +78,7 @@ ROUTING_SEQUENCES = {
     ],
     "activate_filter_recovery": ["legalcode_discover", "legalcode_search"],
     "activate_incomplete_authority": [],
+    "activate_exact_patent": ["legalcode_patents", "legalcode_patents"],
 }
 MACHINE_PROMPT_PATTERN = re.compile(
     r"\b(?:sourceRef|lawKey|flowKey|sourceCode|document_count)\b|"
@@ -100,7 +104,7 @@ def validate_package(failures: list[str]) -> Path:
     actual_files = {
         str(path.relative_to(PACKAGE_ROOT))
         for path in PACKAGE_ROOT.rglob("*")
-        if path.is_file()
+        if path.is_file() and path.name != ".DS_Store"
     }
     require(
         actual_files == EXPECTED_PACKAGE_FILES,
@@ -154,6 +158,20 @@ def validate_package(failures: list[str]) -> Path:
         failures,
     )
     if isinstance(interface, dict):
+        for field, maximum in {
+            "displayName": 30,
+            "shortDescription": 30,
+            "longDescription": 4000,
+            "developerName": 80,
+            "category": 80,
+        }.items():
+            value = interface.get(field)
+            require(isinstance(value, str) and 0 < len(value) <= maximum,
+                    f"Manifest {field} is missing or exceeds its submission limit", failures)
+        for field in ("websiteURL", "supportURL", "privacyPolicyURL", "termsOfServiceURL"):
+            value = interface.get(field)
+            require(isinstance(value, str) and value.startswith("https://") and len(value) <= 1024,
+                    f"Manifest {field} must contain the public HTTPS listing URL", failures)
         prompts = interface.get("defaultPrompt", [])
         require(
             isinstance(prompts, list)
@@ -171,6 +189,10 @@ def validate_package(failures: list[str]) -> Path:
                 f"Manifest {key} must reference an included package asset",
                 failures,
             )
+
+    examples = load_json(PACKAGE_ROOT / "skills" / SKILL_NAME / "references" / "tool-examples.json")
+    require({entry.get("tool") for entry in examples.get("examples", [])} == TOOLS,
+            "Packaged call examples must cover all six tools", failures)
 
     skills_root = PACKAGE_ROOT / "skills"
     skill_directories = {path.name for path in skills_root.iterdir() if path.is_dir()}
@@ -318,6 +340,26 @@ def validate_local_marketplace(failures: list[str]) -> None:
     )
 
 
+def validate_shared_guide(failures: list[str]) -> None:
+    claude_root = REPO_ROOT / "plugins" / "legalcode-claude"
+    openai_manifest = load_json(PACKAGE_ROOT / ".codex-plugin" / "plugin.json")
+    claude_manifest = load_json(claude_root / ".claude-plugin" / "plugin.json")
+    for key in ("name", "version"):
+        require(claude_manifest.get(key) == openai_manifest.get(key),
+                f"Claude and OpenAI package {key} must match", failures)
+    require(load_json(claude_root / ".mcp.json") == load_json(PACKAGE_ROOT / ".mcp.json"),
+            "Both packages must retain the same hosted MCP connection", failures)
+    for relative in ("SKILL.md", "references/tool-examples.json"):
+        require((claude_root / "skills" / SKILL_NAME / relative).read_bytes()
+                == (PACKAGE_ROOT / "skills" / SKILL_NAME / relative).read_bytes(),
+                f"Shared MCP guide drifted between packages: {relative}", failures)
+    marketplace = load_json(REPO_ROOT / ".claude-plugin" / "marketplace.json")
+    entries = [entry for entry in marketplace.get("plugins", [])
+               if entry.get("name") == claude_manifest["name"]]
+    require(len(entries) == 1 and entries[0].get("version") == claude_manifest["version"],
+            "Claude marketplace version must match the release package", failures)
+
+
 def validate_routing(failures: list[str]) -> None:
     document = load_json(REPO_ROOT / "tests" / "openai-skill-routing.json")
     cases = document.get("cases")
@@ -383,7 +425,7 @@ def validate_routing(failures: list[str]) -> None:
         )
         if case.get("expected_skill") == SKILL_NAME and sequence:
             require(
-                sequence[0] == "legalcode_discover",
+                sequence[0] == ("legalcode_patents" if case.get("id") == "activate_exact_patent" else "legalcode_discover"),
                 f"Routing case {case.get('id')} must Discover before Search, Analyze, or Trace",
                 failures,
             )
@@ -425,14 +467,12 @@ def validate_submission_worksheet(failures: list[str]) -> None:
         failures,
     )
     if isinstance(test_cases, list):
-        cases_by_tool = {
-            case.get("tools_triggered"): case
-            for case in test_cases
-            if isinstance(case, dict)
-        }
+        cases_by_tool = {case.get("tools_triggered"): case for case in test_cases if isinstance(case, dict)}
+        covered_tools = {tool.strip() for names in cases_by_tool if isinstance(names, str)
+                         for tool in names.split(",")}
         require(
-            set(cases_by_tool) == TOOLS,
-            "Submission worksheet must contain one positive case for each Legalcode tool",
+            covered_tools == TOOLS,
+            "Five positive submission cases must collectively cover all six Legalcode tools",
             failures,
         )
         for tool, case in cases_by_tool.items():
@@ -443,31 +483,44 @@ def validate_submission_worksheet(failures: list[str]) -> None:
                 f"Worksheet prompt for {tool} contains Icelandic query text",
                 failures,
             )
-            if tool != "legalcode_fetch":
-                require(
-                    isinstance(prompt, str)
-                    and MACHINE_PROMPT_PATTERN.search(prompt) is None,
-                    f"Worksheet prompt for {tool} exposes machine vocabulary",
-                    failures,
-                )
+            require(
+                isinstance(prompt, str)
+                and MACHINE_PROMPT_PATTERN.search(prompt) is None,
+                f"Worksheet prompt for {tool} exposes machine vocabulary",
+                failures,
+            )
             require(
                 isinstance(expected_output, str)
                 and MACHINE_PROMPT_PATTERN.search(expected_output) is None,
                 f"Worksheet expected output for {tool} exposes machine vocabulary",
                 failures,
             )
-        fetch_case = cases_by_tool.get("legalcode_fetch", {})
-        require(
-            "law/IS/IS|LAW|90/2018" in fetch_case.get("user_prompt", ""),
-            "The standalone Fetch case must retain its stable technical record handle",
-            failures,
-        )
     if isinstance(negative_cases, list):
         require(
             all(case.get("tools_triggered") is None for case in negative_cases),
             "Negative submission cases must not trigger a Legalcode tool",
             failures,
         )
+    manifest = load_json(PACKAGE_ROOT / ".codex-plugin" / "plugin.json")
+    review = manifest.get("extensions", {}).get("com.openai", {}).get("review", {})
+    packaged_cases = review.get("test_cases", {})
+    for source, kind in ((test_cases, "positive"), (negative_cases, "negative")):
+        expected = []
+        for case in source or []:
+            entry = {"description": case["description"], "prompt": case["user_prompt"],
+                     "expected_behavior": case["expected_output"]}
+            if kind == "positive":
+                entry["tools_triggered"] = case["tools_triggered"]
+            expected.append(entry)
+        require(packaged_cases.get(kind) == expected,
+                f"Packaged {kind} review cases must match the submission worksheet", failures)
+    for tool, entry in worksheet.get("tools", {}).items():
+        require(entry.get("annotations") == {
+            "readOnlyHint": True, "openWorldHint": tool == "legalcode_patents",
+            "destructiveHint": False, "idempotentHint": True,
+        }, f"Worksheet safety hints drifted for {tool}", failures)
+    require(not ({"test_credentials", "reviewer_instructions"} & set(review)),
+            "Private reviewer access must stay outside the ZIP", failures)
 
 
 def validate_reader_facing_docs(failures: list[str]) -> None:
@@ -508,10 +561,16 @@ def validate_skill_reference(skill_root: Path, failures: list[str]) -> None:
 
 
 def main() -> int:
+    global PACKAGE_ROOT
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--package-root", type=Path, default=PACKAGE_ROOT,
+                        help="Validate an extracted ZIP against the source worksheet and routing contracts")
+    PACKAGE_ROOT = parser.parse_args().package_root.resolve()
     failures: list[str] = []
     try:
         skill_root = validate_package(failures)
         validate_local_marketplace(failures)
+        validate_shared_guide(failures)
         validate_routing(failures)
         validate_submission_worksheet(failures)
         validate_reader_facing_docs(failures)

@@ -1,6 +1,6 @@
 {
   "name": "legalcode",
-  "version": "1.1.3",
+  "version": "1.2.0",
   "description": "Primary-source legal research",
   "author": {
     "name": "Fordæmi ehf.",
@@ -22,20 +22,86 @@
   "interface": {
     "displayName": "Legalcode",
     "shortDescription": "Primary-source legal research",
-    "longDescription": "Search primary legal materials, retrieve source metadata and excerpts, analyze aggregate patterns, and trace relationships among laws, decisions, citations, and legislative history. The included MCP guide helps choose and combine Legalcode's five research tools while keeping conclusions tied to verifiable sources.",
+    "longDescription": "Search primary legal materials, retrieve source metadata and available text, analyze indexed cohorts, and trace verified relationships among laws, decisions and legislative history. Research patent publications through the dedicated Patents tool. Where current profiles support them, use structured parliamentary metadata to find documents, events and participation assignments. The included MCP guide explains how to combine all six research tools and preserve exact identities, versions and coverage limits. Coverage and text availability vary by jurisdiction and source.",
     "developerName": "Fordæmi ehf.",
     "category": "Productivity",
-    "capabilities": ["Read"],
+    "capabilities": [
+      "Read"
+    ],
     "websiteURL": "https://legalcode.md",
     "privacyPolicyURL": "https://legalcode.md/privacy",
     "termsOfServiceURL": "https://legalcode.md/terms",
     "defaultPrompt": [
       "Research an Icelandic legal issue using current legislation and case law.",
       "Find EU legislation and decisions, then trace national implementation measures.",
-      "Show which Icelandic legal sources are available and what I can ask about them."
+      "Find European patent EP4811984A1 and verify its published claims."
     ],
     "brandColor": "#0F766E",
     "composerIcon": "./assets/legalcode-composer-48.png",
-    "logo": "./assets/legalcode-directory-256.png"
+    "logo": "./assets/legalcode-directory-256.png",
+    "supportURL": "https://legalcode.md/contact"
+  },
+  "extensions": {
+    "com.openai": {
+      "onboardingSkill": "./skills/legalcode-mcp-guide/SKILL.md",
+      "review": {
+        "test_cases": {
+          "positive": [
+            {
+              "description": "Compare current legal-source coverage across three supported jurisdictions before researching.",
+              "prompt": "Compare the legal source types Legalcode currently covers in Iceland, the European Union, and the United States.",
+              "tools_triggered": "legalcode_discover",
+              "expected_behavior": "Uses current discovery for each jurisdiction and summarizes the available legislation, court decisions, agency materials, guidance, agreements, and preparatory materials in ordinary language. It distinguishes genuine coverage gaps and does not display internal source codes or schema keys."
+            },
+            {
+              "description": "Search an exact European patent publication and verify available claims text.",
+              "prompt": "Find European patent EP4811984A1. Verify its publication identity and summarize its published claims with the source link.",
+              "tools_triggered": "legalcode_patents",
+              "expected_behavior": "Uses the dedicated Patents tool to search the exact publication, then retrieve metadata and available text for that same publication. Reports its identifier including the kind code, source link, and a summary supported by retrieved claims. If the provider or text is unavailable, states the limitation without inventing claims."
+            },
+            {
+              "description": "Find and retrieve a targeted provision from a known European Union instrument.",
+              "prompt": "Find GDPR (CELEX 32016R0679), retrieve Article 22, and explain when solely automated decisions are permitted, with the official source.",
+              "tools_triggered": "legalcode_discover, legalcode_search, legalcode_fetch",
+              "expected_behavior": "Discovers the EU law profile, resolves the GDPR by its public legal identifier, and retrieves Article 22 from the returned current record. The answer explains the contract, legal-authorization, and explicit-consent exceptions and the required safeguards, cites Article 22, links to EUR-Lex, and does not display the internal retrieval handle."
+            },
+            {
+              "description": "Analyze a precisely bounded regulatory-decision cohort and verify records from the same cohort.",
+              "prompt": "Show annual counts of Icelandic Data Protection Authority decisions from 2018 through 2025, then verify the two newest decisions in that cohort.",
+              "tools_triggered": "legalcode_discover, legalcode_analyze, legalcode_search, legalcode_fetch",
+              "expected_behavior": "Discovers the exact authority scope, returns one annual count for each year from 2018 through 2025, and labels the figures as indexed-corpus counts rather than causal findings. It then searches the identical cohort and retrieves the two newest decisions, identifying each by title or decision number, date, issuing body, and official link without displaying internal fields or record handles."
+            },
+            {
+              "description": "Follow an enacted Icelandic law into its original legislative history and supporting documents.",
+              "prompt": "Find the original bill behind Icelandic Act no. 90/2018, list five submitted opinions, and briefly summarize the committee report with official links.",
+              "tools_triggered": "legalcode_discover, legalcode_search, legalcode_trace, legalcode_fetch",
+              "expected_behavior": "Resolves Act no. 90/2018, traces it to matter 622 of the 148th parliamentary session, and distinguishes that original enactment history from later amending matters. It lists five named submitted opinions with official links, retrieves committee report no. 1281, and gives a source-grounded summary without displaying internal flow or record handles."
+            }
+          ],
+          "negative": [
+            {
+              "description": "Do not trigger when the user asks to file a legal document with a court.",
+              "prompt": "File this pleading with the Icelandic courts for me.",
+              "expected_behavior": "The app should not be invoked because Legalcode researches legal sources but cannot file documents or act on the user's behalf."
+            },
+            {
+              "description": "Do not trigger for a self-contained contract edit that requires no source research.",
+              "prompt": "Rewrite for clarity without changing the meaning: 'Neither party is liable for indirect, incidental, or consequential damages.'",
+              "expected_behavior": "The app should not be invoked because the requested edit is fully contained in the supplied text and does not ask for legal-source research."
+            },
+            {
+              "description": "Do not trigger for legal correspondence drafting that requires no source research.",
+              "prompt": "Draft a polite email to opposing counsel asking for a one-week extension.",
+              "expected_behavior": "The app should not be invoked because drafting correspondence does not require searching, retrieving, analyzing, or tracing legal sources."
+            }
+          ]
+        },
+        "commerce": false,
+        "commerce_description": "The plugin supports source research and does not sell products or process payments."
+      },
+      "publication": {
+        "release_notes": "Version 1.2.0 updates the MCP guide for six tools, including dedicated patent search and retrieval, metadata-based parliamentary entries, exact versions, count semantics and availability limits. Adds customer support metadata and updated review scenarios. Hosted tool changes remain subject to MCP scan approval."
+      }
+    }
   }
 }

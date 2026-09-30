@@ -10,8 +10,11 @@ on:
       - "chatgpt-app-submission.json"
       - "docs/**"
       - "plugins/legalcode-openai/**"
+      - "plugins/legalcode-claude/**"
+      - ".claude-plugin/marketplace.json"
       - "requirements-dev.txt"
       - "scripts/validate_openai_submission.py"
+      - "scripts/build_openai_package.py"
       - "tests/openai-skill-routing.json"
   pull_request:
     paths:
@@ -20,8 +23,11 @@ on:
       - "chatgpt-app-submission.json"
       - "docs/**"
       - "plugins/legalcode-openai/**"
+      - "plugins/legalcode-claude/**"
+      - ".claude-plugin/marketplace.json"
       - "requirements-dev.txt"
       - "scripts/validate_openai_submission.py"
+      - "scripts/build_openai_package.py"
       - "tests/openai-skill-routing.json"
 
 permissions:
@@ -46,5 +52,15 @@ jobs:
       - name: Install validation dependencies
         run: python -m pip install --disable-pip-version-check -r requirements-dev.txt
 
-      - name: Validate the OpenAI submission package
-        run: python scripts/validate_openai_submission.py
+      - name: Build and validate the OpenAI upload package
+        run: python scripts/build_openai_package.py
+
+      - name: Save the upload ZIP and validation evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: legalcode-openai-upload
+          path: |
+            dist/legalcode-openai-*.zip
+            dist/legalcode-openai-*.zip.sha256
+            dist/legalcode-openai-*.validation.json
+          if-no-files-found: error

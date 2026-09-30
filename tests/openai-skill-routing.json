@@ -1,20 +1,24 @@
 {
   "schema_version": 1,
-  "included_skills": ["legalcode-mcp-guide"],
+  "included_skills": [
+    "legalcode-mcp-guide"
+  ],
   "cases": [
     {
       "id": "activate_source_coverage",
-      "prompt": "What Icelandic legal sources can Legalcode research, and how can I narrow a search?",
+      "prompt": "Compare the legal source types Legalcode currently covers in Iceland, the European Union, and the United States.",
       "expected_skill": "legalcode-mcp-guide",
-      "expected_sequence": ["legalcode_discover"],
+      "expected_sequence": [
+        "legalcode_discover"
+      ],
       "expected_output_contract": [
-        "Explain coverage and search options in ordinary language",
+        "Compare current coverage by jurisdiction in ordinary language",
         "Do not display raw schema keys or source codes"
       ]
     },
     {
       "id": "activate_aggregate_workflow",
-      "prompt": "Show a yearly trend of Icelandic privacy decisions and then verify representative ones.",
+      "prompt": "Show annual counts of Icelandic Data Protection Authority decisions from 2018 through 2025, then verify the two newest decisions in that cohort.",
       "expected_skill": "legalcode-mcp-guide",
       "expected_sequence": [
         "legalcode_discover",
@@ -25,7 +29,7 @@
     },
     {
       "id": "activate_legislative_history",
-      "prompt": "Find the preparatory works and submitted opinions behind Icelandic Act 90/2018.",
+      "prompt": "Find the original bill behind Icelandic Act no. 90/2018, list five submitted opinions, and briefly summarize the committee report with official links.",
       "expected_skill": "legalcode-mcp-guide",
       "expected_sequence": [
         "legalcode_discover",
@@ -47,7 +51,7 @@
     },
     {
       "id": "activate_implementation_trace",
-      "prompt": "Which Icelandic law implements the GDPR instrument identified by CELEX 32016R0679? Verify the result.",
+      "prompt": "Which indexed Icelandic instruments are connected to GDPR CELEX 32016R0679 as implementation measures? Verify the material results.",
       "expected_skill": "legalcode-mcp-guide",
       "expected_sequence": [
         "legalcode_discover",
@@ -56,6 +60,7 @@
       ],
       "expected_output_contract": [
         "Use human-readable legal citations and official links",
+        "Report the qualified matches and explain the indexed relationship scope",
         "Do not display machine identifiers unless explicitly requested"
       ]
     },
@@ -63,7 +68,10 @@
       "id": "activate_filter_recovery",
       "prompt": "Legalcode rejected a filter I used for Icelandic court decisions. Check the available options and retry the search correctly.",
       "expected_skill": "legalcode-mcp-guide",
-      "expected_sequence": ["legalcode_discover", "legalcode_search"],
+      "expected_sequence": [
+        "legalcode_discover",
+        "legalcode_search"
+      ],
       "expected_output_contract": [
         "Explain the correction in ordinary language",
         "Do not echo raw field names or source codes unless requested"
@@ -80,14 +88,14 @@
       ]
     },
     {
-      "id": "nonactivation_weather",
-      "prompt": "What is the weather in Reykjavík tomorrow?",
+      "id": "nonactivation_correspondence",
+      "prompt": "Draft a polite email to opposing counsel asking for a one-week extension.",
       "expected_skill": null,
       "expected_sequence": []
     },
     {
       "id": "nonactivation_contract_edit",
-      "prompt": "Rewrite this limitation-of-liability clause without researching the law.",
+      "prompt": "Rewrite for clarity without changing the meaning: 'Neither party is liable for indirect, incidental, or consequential damages.'",
       "expected_skill": null,
       "expected_sequence": []
     },
@@ -96,6 +104,20 @@
       "prompt": "Rewrite this limitation-of-liability clause for clarity while preserving its meaning.",
       "expected_skill": null,
       "expected_sequence": []
+    },
+    {
+      "id": "activate_exact_patent",
+      "prompt": "Find European patent EP4811984A1 and verify its published claims.",
+      "expected_skill": "legalcode-mcp-guide",
+      "expected_sequence": [
+        "legalcode_patents",
+        "legalcode_patents"
+      ],
+      "expected_output_contract": [
+        "Preserve exact publication identity and kind code",
+        "Summarize only retrieved claims and report unavailable text",
+        "Use the dedicated Patents tool without generic discovery or search"
+      ]
     }
   ]
 }
