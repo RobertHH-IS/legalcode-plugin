@@ -4,8 +4,8 @@
 
 - Name: Legalcode
 - Version: 1.2.1
-- Subtitle: Primary-source legal research
-- Category: Education & Research
+- Subtitle: Legal research for business
+- Category: Business & Operations
 - Developer identity: verified Fordæmi ehf.
 - Plugin author: Fordæmi ehf.
 - Website: https://legalcode.md
@@ -21,7 +21,7 @@
 
 Description:
 
-> Research legislation, court decisions, legislative history and patents using primary sources and precise metadata. Find relevant sources, retrieve available text, compare exact versions, count indexed records and follow verified relationships. Where coverage supports it, research parliamentary documents, speeches, votes, events and historical roles. Results include source identities and links so you can verify the evidence. Coverage and text availability vary by jurisdiction and source.
+> Research primary legal sources for business, compliance and professional legal work. Find legislation, court decisions, legislative history and patents; retrieve available text, compare exact versions, count indexed records and follow verified relationships. Where coverage supports it, research parliamentary documents, speeches, votes, events and historical roles. Results include source identities and links so you can verify the evidence. Coverage and text availability vary by jurisdiction and source.
 
 Starter prompts:
 
@@ -31,7 +31,7 @@ Starter prompts:
 
 Release notes:
 
-> Version 1.2.1 clarifies the legal research purpose and updates the listing category to Education & Research. The six research tools and hosted MCP connection are unchanged.
+> Version 1.2.1 clarifies the legal research purpose and updates the listing category to Business & Operations. The six research tools and hosted MCP connection are unchanged.
 
 Submission assets:
 

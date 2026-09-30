@@ -1,7 +1,7 @@
 {
   "name": "app-6a5fc36564608191827f4e7716bdaba0",
   "version": "1.2.1",
-  "description": "Primary-source legal research",
+  "description": "Legal research for business",
   "author": {
     "name": "Fordæmi ehf.",
     "url": "https://legalcode.md"
@@ -21,10 +21,10 @@
   "mcpServers": "./.mcp.json",
   "interface": {
     "displayName": "Legalcode",
-    "shortDescription": "Primary-source legal research",
-    "longDescription": "Research legislation, court decisions, legislative history and patents using primary sources and precise metadata. Find relevant sources, retrieve available text, compare exact versions, count indexed records and follow verified relationships. Where coverage supports it, research parliamentary documents, speeches, votes, events and historical roles. Results include source identities and links so you can verify the evidence. Coverage and text availability vary by jurisdiction and source.",
+    "shortDescription": "Legal research for business",
+    "longDescription": "Research primary legal sources for business, compliance and professional legal work. Find legislation, court decisions, legislative history and patents; retrieve available text, compare exact versions, count indexed records and follow verified relationships. Where coverage supports it, research parliamentary documents, speeches, votes, events and historical roles. Results include source identities and links so you can verify the evidence. Coverage and text availability vary by jurisdiction and source.",
     "developerName": "Fordæmi ehf.",
-    "category": "Education & Research",
+    "category": "Business & Operations",
     "capabilities": [
       "Read"
     ],
@@ -100,7 +100,7 @@
         "commerce_description": "The plugin supports source research and does not sell products or process payments."
       },
       "publication": {
-        "release_notes": "Version 1.2.1 clarifies the legal research purpose and updates the listing category to Education & Research. The six research tools and hosted MCP connection are unchanged."
+        "release_notes": "Version 1.2.1 clarifies the business and professional legal research purpose and updates the listing category to Business & Operations. The six research tools and hosted MCP connection are unchanged."
       }
     }
   }

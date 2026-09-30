@@ -3,9 +3,9 @@
   "schema_version": 1,
   "app_info": {
     "display_name": "Legalcode",
-    "subtitle": "Primary-source legal research",
-    "description": "Research legislation, court decisions, legislative history and patents using primary sources and precise metadata. Find relevant sources, retrieve available text, compare exact versions, count indexed records and follow verified relationships. Where coverage supports it, research parliamentary documents, speeches, votes, events and historical roles. Results include source identities and links so you can verify the evidence. Coverage and text availability vary by jurisdiction and source.",
-    "category": "Education & Research"
+    "subtitle": "Legal research for business",
+    "description": "Research primary legal sources for business, compliance and professional legal work. Find legislation, court decisions, legislative history and patents; retrieve available text, compare exact versions, count indexed records and follow verified relationships. Where coverage supports it, research parliamentary documents, speeches, votes, events and historical roles. Results include source identities and links so you can verify the evidence. Coverage and text availability vary by jurisdiction and source.",
+    "category": "Business & Operations"
   },
   "tools": {
     "legalcode_discover": {
