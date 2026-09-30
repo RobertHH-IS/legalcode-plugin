@@ -5,7 +5,7 @@
   },
   "plugins": [
     {
-      "name": "legalcode",
+      "name": "app-6a5fc36564608191827f4e7716bdaba0",
       "source": {
         "source": "local",
         "path": "./plugins/legalcode-openai"

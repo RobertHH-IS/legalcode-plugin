@@ -122,8 +122,9 @@ Publication and identity selection remain manual portal actions.
 
 ## Version 1.2.0 package update
 
-Upload `dist/legalcode-openai-1.2.0.zip` to the existing Legalcode plugin. The ZIP preserves the
-manifest name and MCP endpoint and imports updated listing metadata, one guide skill, five positive
+Upload `dist/legalcode-openai-1.2.0.zip` to the existing Legalcode plugin. Its manifest name is the
+assigned dashboard identity `app-6a5fc36564608191827f4e7716bdaba0`; its display name remains Legalcode.
+The ZIP preserves the MCP endpoint and imports updated listing metadata, one guide skill, five positive
 and three negative review cases. Customer support metadata is included. Existing country targeting
 and the saved demo URL are preserved by omission. This package does not bypass held MCP tool
 updates: inspect their findings, rescan or appeal through the separate MCP review panel.

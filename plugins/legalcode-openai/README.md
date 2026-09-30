@@ -18,6 +18,7 @@ hook or custom interface. Authentication is managed by the client and hosted ser
 ## Listing
 
 - Name: Legalcode
+- Package identity: app-6a5fc36564608191827f4e7716bdaba0
 - Version: 1.2.0
 - Developer: Fordæmi ehf.
 - Website: https://legalcode.md

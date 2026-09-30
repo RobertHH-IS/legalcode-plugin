@@ -2,7 +2,10 @@
 
 Prepared on 2026-09-30. The upload file is `dist/legalcode-openai-1.2.0.zip`.
 
-This release preserves the `legalcode` package name, publisher, existing manifest format and
+The OpenAI manifest uses the existing dashboard identity
+`app-6a5fc36564608191827f4e7716bdaba0`, with the display name Legalcode.
+The Claude package retains its independent `legalcode` identity. This release preserves the
+publisher, existing manifest format and
 `https://mcp.legalcode.md/mcp` connection. It updates the included guide for all six tools, dedicated
 patent search and retrieval, parliamentary event and participation assignments, exact versions,
 historical dates, counting units and body availability. It adds the missing support URL, five
@@ -27,7 +30,8 @@ hosted research scenario. Fresh reviewer-session scenarios and portal approval a
 
 ## Upload
 
-1. Open the existing Legalcode plugin in OpenAI's plugin management dashboard.
+1. Open the existing Legalcode plugin in OpenAI's plugin management dashboard. Its technical
+   identity is `app-6a5fc36564608191827f4e7716bdaba0` and must match the ZIP's manifest name.
 2. Select **Upload plugin to make changes** and choose `legalcode-openai-1.2.0.zip`.
 3. Confirm version 1.2.0 under **Metadata & Skills** and inspect the automated findings.
 4. Keep reviewer credentials and the demonstration video in the secure portal fields.

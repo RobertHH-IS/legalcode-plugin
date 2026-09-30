@@ -19,6 +19,7 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 PACKAGE_ROOT = REPO_ROOT / "plugins" / "legalcode-openai"
 SKILL_NAME = "legalcode-mcp-guide"
 MCP_URL = "https://mcp.legalcode.md/mcp"
+OPENAI_PLUGIN_NAME = "app-6a5fc36564608191827f4e7716bdaba0"
 TOOLS = {
     "legalcode_discover",
     "legalcode_search",
@@ -116,7 +117,9 @@ def validate_package(failures: list[str]) -> Path:
 
     manifest_path = PACKAGE_ROOT / ".codex-plugin" / "plugin.json"
     manifest = load_json(manifest_path)
-    require(manifest.get("name") == "legalcode", "Plugin name must be legalcode", failures)
+    require(manifest.get("name") == OPENAI_PLUGIN_NAME,
+            f"OpenAI plugin name must match the existing dashboard identity: {OPENAI_PLUGIN_NAME}",
+            failures)
     require(
         isinstance(manifest.get("version"), str)
         and re.fullmatch(r"\d+\.\d+\.\d+", manifest["version"]) is not None,
@@ -322,7 +325,7 @@ def validate_local_marketplace(failures: list[str]) -> None:
             "interface": {"displayName": "Legalcode Local"},
             "plugins": [
                 {
-                    "name": "legalcode",
+                    "name": OPENAI_PLUGIN_NAME,
                     "source": {
                         "source": "local",
                         "path": "./plugins/legalcode-openai",
@@ -344,9 +347,10 @@ def validate_shared_guide(failures: list[str]) -> None:
     claude_root = REPO_ROOT / "plugins" / "legalcode-claude"
     openai_manifest = load_json(PACKAGE_ROOT / ".codex-plugin" / "plugin.json")
     claude_manifest = load_json(claude_root / ".claude-plugin" / "plugin.json")
-    for key in ("name", "version"):
-        require(claude_manifest.get(key) == openai_manifest.get(key),
-                f"Claude and OpenAI package {key} must match", failures)
+    require(claude_manifest.get("name") == "legalcode",
+            "Claude must retain its own legalcode plugin identity", failures)
+    require(claude_manifest.get("version") == openai_manifest.get("version"),
+            "Claude and OpenAI package versions must match", failures)
     require(load_json(claude_root / ".mcp.json") == load_json(PACKAGE_ROOT / ".mcp.json"),
             "Both packages must retain the same hosted MCP connection", failures)
     for relative in ("SKILL.md", "references/tool-examples.json"):

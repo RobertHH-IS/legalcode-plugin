@@ -78,6 +78,7 @@ def main() -> None:
     digest = hashlib.sha256(data).hexdigest()
     output.with_suffix(".zip.sha256").write_text(f"{digest}  {output.name}\n")
     report = {
+        "plugin_name": manifest["name"],
         "version": version,
         "archive": output.name,
         "bytes": len(data),
@@ -92,7 +93,8 @@ def main() -> None:
         "limits": ["Package validation is separate from hosted tool approval and live reviewer scenarios."],
     }
     output.with_suffix(".validation.json").write_text(json.dumps(report, indent=2) + "\n")
-    print(json.dumps({"archive": str(output), "bytes": len(data), "files": len(files),
+    print(json.dumps({"archive": str(output), "plugin_name": manifest["name"],
+                      "bytes": len(data), "files": len(files),
                       "sha256": digest}, indent=2))
 
 
